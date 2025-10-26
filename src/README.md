@@ -344,6 +344,76 @@ export function SourceList({ sources }: SourceListProps) {
 
 ---
 
+## 🚀 Deployment
+
+### Quick Deploy to Vercel
+
+GenuVerity is ready to deploy to Vercel with zero configuration:
+
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Connect to Vercel**
+   - Go to [vercel.com](https://vercel.com) and sign in
+   - Click "New Project" → Import your GitHub repository
+   - Vercel will auto-detect settings (Vite/React)
+
+3. **Deploy**
+   - Click "Deploy" (no configuration needed)
+   - Your app will be live at `your-project.vercel.app` in ~2 minutes
+
+### Important: Logo & Images
+
+⚠️ **Before deploying to Vercel:** You need to replace `figma:asset` imports with the `<Logo />` component.
+
+**Current state (Figma Make):**
+```tsx
+// ✅ Works great in Figma Make
+import genuverityLogo from 'figma:asset/...';
+<img src={genuverityLogo} alt="GenuVerity" />
+```
+
+**For deployment (Vercel/Netlify):**
+```tsx
+// ✅ Replace with this before deploying
+import { Logo } from '../components/Logo';
+<Logo width={180} height={144} />
+```
+
+**See:** [PRE_DEPLOY_CHECKLIST.md](/PRE_DEPLOY_CHECKLIST.md) for step-by-step instructions on which files to update.
+
+### Configuration Files Included
+
+- ✅ `vercel.json` - Handles client-side routing and security headers
+- ✅ All assets are inline SVGs (no external dependencies)
+- ✅ Environment variables not needed for frontend-only version
+
+### Testing Production Build Locally
+
+Before deploying, test the production build:
+
+```bash
+npm run build
+npm run preview
+# Test at http://localhost:4173
+```
+
+### Custom Domain (Optional)
+
+After deployment, add a custom domain:
+1. Go to Project Settings → Domains in Vercel
+2. Add your domain (e.g., `genuverity.com`)
+3. Configure DNS at your registrar
+4. SSL certificate auto-provisions
+
+**See:** [DEPLOYMENT.md](/DEPLOYMENT.md) for complete deployment guide, troubleshooting, and advanced configuration.
+
+---
+
 ## 🐛 Troubleshooting
 
 ### Common Issues & Solutions
@@ -530,25 +600,30 @@ analysisTime: '38s' // Should be 25-45s range
 
 ---
 
-#### Issue: Images not loading
+#### Issue: Images not loading (especially in deployment)
 
 **Symptoms:**
-- Broken image icons
+- Broken image icons in production (Vercel, Netlify, etc.)
 - Missing logo/assets
 - 404 errors in console
+- Works locally but breaks when deployed
 
-**Cause:** Incorrect Figma asset import paths
+**Cause:** `figma:asset` imports only work in Figma Make environment, not in production deployments
 
 **Solution:**
 ```typescript
-// Check the exact path from Figma imports
-import logo from 'figma:asset/8a452e4bd85da1036f4096d3f0c99aafc1ad1c8d.png';
+// ❌ DON'T use Figma asset imports for deployment
+import logo from 'figma:asset/7a1c97674e5167dc2d9474d7d02423e43c5e10fe.png';
 
-// Use ImageWithFallback for generated images
-import { ImageWithFallback } from './components/figma/ImageWithFallback';
+// ✅ DO use the Logo component instead
+import { Logo } from './components/Logo';
+
+<Logo width={180} height={144} className="text-foreground" />
 ```
 
-**Prevention:** Don't modify Figma asset imports manually
+**For deployment:** All Figma assets have been replaced with the SVG-based `<Logo />` component that works everywhere.
+
+**Prevention:** Use `<Logo />` component or host images in `/public` directory
 
 ---
 

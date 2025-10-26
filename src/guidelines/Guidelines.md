@@ -25,6 +25,8 @@ GenuVerity is a Constitutional AI-powered fact-checking platform built with Reac
 │   └── NotFound.tsx         # 404 page
 ├── components/
 │   ├── Navigation.tsx       # Shared navigation with theme toggle
+│   ├── Logo.tsx             # SVG logo component (deployment-safe)
+│   ├── Footer.tsx           # Shared footer component
 │   ├── ThemeProvider.tsx    # Dark/light mode context
 │   ├── ThemeToggle.tsx      # Theme switcher component
 │   ├── layouts/             # Layout components
@@ -402,8 +404,10 @@ Ensure consistency across:
 
 ### Component Imports
 ```tsx
-// Navigation
+// Navigation & Layout
 import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
+import { Logo } from '../components/Logo';
 
 // UI Components
 import { Button } from '../components/ui/button';
@@ -418,6 +422,38 @@ import { FactCheckResult } from '../types';
 // Router
 import { Link, useNavigate } from 'react-router-dom';
 ```
+
+### Logo & Images for Deployment
+
+**Development Workflow:**
+
+**In Figma Make (Current):**
+```tsx
+// ✅ Use Figma assets (looks great)
+import genuverityLogo from 'figma:asset/7a1c97674e5167dc2d9474d7d02423e43c5e10fe.png';
+<img src={genuverityLogo} alt="GenuVerity" />
+```
+
+**Before Deploying to Vercel/Netlify:**
+```tsx
+// ✅ Replace with Logo component
+import { Logo } from '../components/Logo';
+<Logo width={180} height={144} className="text-foreground" />
+```
+
+**Why?**
+- `figma:asset` imports only work in Figma Make environment
+- They will break on Vercel, Netlify, and other hosting platforms
+- The `<Logo />` component uses inline SVG and works everywhere
+
+**Deployment Checklist:**
+1. See [PRE_DEPLOY_CHECKLIST.md](/PRE_DEPLOY_CHECKLIST.md) for exact files to update
+2. Replace imports in `/components/Navigation.tsx`
+3. Replace imports in `/pages/Home.tsx`
+4. Test with `npm run build && npm run preview`
+5. Deploy to Vercel
+
+**See also:** [DEPLOYMENT.md](/DEPLOYMENT.md) for complete deployment guide
 
 ### Protected Files
 Do not modify:
@@ -448,14 +484,19 @@ Do not modify:
 ## Version Control
 
 **Current Version:** Beta (Pre-launch)
-**Last Updated:** October 22, 2025
+**Last Updated:** October 26, 2024
 
 **Change Log:**
+- Added deployment-safe Logo component (inline SVG)
+- Replaced all Figma asset imports with Logo component
+- Created comprehensive DEPLOYMENT.md guide
+- Added Contact page with form
+- Updated Navigation to include Beta and API links
+- Fixed all internal routing links
 - Added Constitutional AI principle weights
 - Updated processing times to 25-45 seconds
 - Expanded source database to 3M+
 - Added cross-references between documentation files
-- Standardized logo assets across pages
 
 ---
 

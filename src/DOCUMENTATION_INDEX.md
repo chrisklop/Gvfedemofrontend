@@ -37,6 +37,14 @@ New to the project? Follow this reading order:
 | **[THEME.md](/THEME.md)** | Dark/light mode system, color variables, theming | When working with colors or theme |
 | **[PROGRESS_INDICATOR_GUIDE.md](/PROGRESS_INDICATOR_GUIDE.md)** | Analysis progress component usage and customization | When working with progress UI |
 
+### 🚀 Deployment
+
+| Document | What You'll Learn | When to Read |
+|----------|-------------------|--------------|
+| **[PRE_DEPLOY_CHECKLIST.md](/PRE_DEPLOY_CHECKLIST.md)** | Required changes before deploying to production | **REQUIRED before first deployment** |
+| **[DEPLOYMENT.md](/DEPLOYMENT.md)** | Complete deployment guide for Vercel/Netlify | When setting up production hosting |
+| **[DEPLOYMENT_FIX_SUMMARY.md](/DEPLOYMENT_FIX_SUMMARY.md)** | What was fixed for deployment compatibility | For reference on deployment issues |
+
 ### 🎨 Design & UX
 
 | Document | What You'll Learn | When to Read |
