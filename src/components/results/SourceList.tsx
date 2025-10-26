@@ -70,9 +70,12 @@ export function SourceList({ sources, tier, tierName, icon, weightContribution }
         <div className="flex items-center gap-3">
           <span className="text-xl">{icon}</span>
           <div className="text-left">
-            <h4>{tierName} ({tierSources.length})</h4>
-            <p className="text-sm text-muted-foreground">
-              Contributing {weightContribution}% to confidence score
+            <h4 style={{ fontWeight: 600 }}>
+              {tierName} {tier === 2 && <span className="text-xs" style={{ fontWeight: 400, color: 'var(--muted-foreground)' }}>(Human-Curated)</span>}{' '}
+              (<span style={{ fontVariantNumeric: 'tabular-nums' }}>{tierSources.length}</span>)
+            </h4>
+            <p style={{ fontSize: '0.875rem', color: 'var(--muted-foreground)' }}>
+              Contributing <span style={{ fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>{weightContribution}%</span> to confidence score
             </p>
           </div>
         </div>
@@ -86,8 +89,8 @@ export function SourceList({ sources, tier, tierName, icon, weightContribution }
           {displaySources.map((source) => (
             <div key={source.id} className="border border-border rounded-lg p-4 hover:bg-accent/30 transition-colors">
               <div className="flex items-start justify-between gap-4 mb-2">
-                <h4 className="flex-1">{source.title}</h4>
-                <Badge variant="secondary" className="text-xs whitespace-nowrap">
+                <h4 className="flex-1" style={{ fontWeight: 600, lineHeight: 1.4 }}>{source.title}</h4>
+                <Badge variant="secondary" className="whitespace-nowrap" style={{ fontSize: '0.75rem', fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>
                   {source.credibilityScore}% credible
                 </Badge>
               </div>

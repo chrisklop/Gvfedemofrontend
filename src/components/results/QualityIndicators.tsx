@@ -29,13 +29,13 @@ const getQualityColor = (score: number): string => {
 export function QualityIndicators({ metrics }: QualityIndicatorsProps) {
   return (
     <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
-      <h3 className="mb-4">Analysis Quality</h3>
+      <h3 className="mb-4" style={{ fontWeight: 600 }}>Analysis Quality</h3>
       <div className="space-y-4">
         {Object.entries(metrics).map(([key, value]) => (
           <div key={key}>
             <div className="flex justify-between mb-2">
-              <span className="text-sm">{qualityLabels[key as keyof QualityMetrics]}</span>
-              <span className="text-sm">{getQualityLabel(value)}</span>
+              <span style={{ fontSize: '0.875rem', fontWeight: 600 }}>{qualityLabels[key as keyof QualityMetrics]}</span>
+              <span style={{ fontSize: '0.875rem', fontWeight: 500 }}>{getQualityLabel(value)}</span>
             </div>
             <div className="relative h-2 bg-muted rounded-full overflow-hidden">
               <div 

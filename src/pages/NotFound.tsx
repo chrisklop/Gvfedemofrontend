@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Home, Search } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
 
 export default function NotFound() {
   return (
@@ -31,6 +32,9 @@ export default function NotFound() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

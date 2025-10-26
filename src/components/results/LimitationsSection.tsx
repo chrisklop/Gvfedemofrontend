@@ -1,4 +1,5 @@
-import { AlertTriangle } from 'lucide-react';
+import { AlertTriangle, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface LimitationsSectionProps {
   limitations: string[];
@@ -45,10 +46,21 @@ export function LimitationsSection({ limitations, analyzedCount, totalCount }: L
           </ul>
         </div>
 
-        <div className="pt-4">
-          <a href="#methodology" className="text-sm text-primary hover:underline">
-            Read Full Methodology →
-          </a>
+        <div className="pt-4 flex flex-col sm:flex-row gap-3">
+          <Link 
+            to="/how-it-works" 
+            className="text-sm text-primary hover:underline inline-flex items-center gap-1"
+          >
+            Read Full Methodology
+            <ArrowRight className="h-3 w-3" />
+          </Link>
+          <Link 
+            to="/limitations" 
+            className="text-sm text-primary hover:underline inline-flex items-center gap-1"
+          >
+            View All Limitations
+            <ArrowRight className="h-3 w-3" />
+          </Link>
         </div>
       </div>
     </div>

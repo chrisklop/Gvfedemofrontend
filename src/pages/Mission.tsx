@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Users, Globe, Target, TrendingUp, CheckCircle, Zap, BookOpen, Scale, GraduationCap, Heart, ExternalLink, AlertCircle, Lightbulb } from 'lucide-react';
 import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Separator } from '../components/ui/separator';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../components/ui/hover-card';
@@ -75,7 +76,7 @@ export default function Mission() {
       <section className="border-b border-border">
         <div className="max-w-4xl mx-auto px-6 py-16 md:py-32 text-center">
           <h1 className="mb-6">Our Mission</h1>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+          <p style={{ fontSize: '1.25rem', fontWeight: 300, lineHeight: 1.7, color: 'var(--muted-foreground)' }} className="max-w-3xl mx-auto">
             Empowering truth in an age of information chaos through Constitutional AI-powered fact-checking
           </p>
         </div>
@@ -85,28 +86,28 @@ export default function Mission() {
       <section className="border-b border-border">
         <div className="max-w-5xl mx-auto px-6 py-12 md:py-16">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-12">
-              <TabsTrigger value="why">Why We Exist</TabsTrigger>
-              <TabsTrigger value="values">Our Values</TabsTrigger>
-              <TabsTrigger value="commitments">Our Commitments</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-3 mb-12 gap-1 p-1">
+              <TabsTrigger value="why" className="px-1 text-xs md:px-2 md:text-sm">Why We Exist</TabsTrigger>
+              <TabsTrigger value="values" className="px-1 text-xs md:px-2 md:text-sm">Our Values</TabsTrigger>
+              <TabsTrigger value="commitments" className="px-1 text-xs md:px-2 md:text-sm">Our Commitments</TabsTrigger>
             </TabsList>
 
             {/* TAB 1: WHY WE EXIST */}
             <TabsContent value="why" className="space-y-16 mt-0">
               {/* Manifesto Header */}
               <div className="text-center max-w-3xl mx-auto">
-                <p className="text-sm text-muted-foreground mb-4">A Founder's Manifesto</p>
-                <h2 className="mb-6">We live in the most connected era in human history, and the most confused.</h2>
+                <p className="mb-4" style={{ fontSize: '0.875rem', fontWeight: 600, letterSpacing: '0.02em', textTransform: 'uppercase', color: 'var(--muted-foreground)' }}>A Founder's Manifesto</p>
+                <h2 className="mb-6" style={{ fontWeight: 300, fontSize: '1.875rem', lineHeight: 1.3, letterSpacing: '-0.02em' }}>We live in the most connected era in human history, and the most confused.</h2>
               </div>
 
               {/* The Crisis */}
               <div className="space-y-8">
-                <p className="text-muted-foreground leading-relaxed">
-                  Every day, billions of people carry the sum of human knowledge in their pockets. We can access any fact, any perspective, any story within seconds. And yet, trust in media has plummeted to just 28% in the United States, the lowest in 50 years.<Citation {...references[0]} /> Media is now the least-trusted civic and political institution, ranking below Congress, the Supreme Court, and the executive branch.<Citation {...references[1]} />
+                <p style={{ color: 'var(--muted-foreground)', lineHeight: 1.7 }}>
+                  Every day, billions of people carry the sum of human knowledge in their pockets. We can access any fact, any perspective, any story within seconds. And yet, trust in media has plummeted to just <span style={{ fontWeight: 700, color: 'var(--foreground)', fontVariantNumeric: 'tabular-nums' }}>28%</span> in the United States, the lowest in 50 years.<Citation {...references[0]} /> Media is now the least-trusted civic and political institution, ranking below Congress, the Supreme Court, and the executive branch.<Citation {...references[1]} />
                 </p>
                 
-                <p className="text-muted-foreground leading-relaxed">
-                  This isn't just a crisis of institutions. <strong className="text-foreground">It's a crisis of truth itself.</strong>
+                <p style={{ color: 'var(--muted-foreground)', lineHeight: 1.7 }}>
+                  This isn't just a crisis of institutions. <strong style={{ color: 'var(--foreground)', fontWeight: 600 }}>It's a crisis of truth itself.</strong>
                 </p>
               </div>
 
@@ -276,9 +277,9 @@ export default function Mission() {
                       <span className="text-sm">3</span>
                     </div>
                     <div>
-                      <h4 className="mb-2">LLM Source Analysis</h4>
+                      <h4 className="mb-2">Source Ranking</h4>
                       <p className="text-sm text-muted-foreground">
-                        We're pulling hundreds of sources, ranking each one on credibility, relevance, and quality. Then we synthesize them with advanced AI analysis.
+                        Each source gets a credibility score based on tier ranking, publication authority, methodology quality, and relevance. We prioritize which sources will inform the verdict.
                       </p>
                     </div>
                   </div>
@@ -286,6 +287,18 @@ export default function Mission() {
                   <div className="flex items-start gap-4">
                     <div className="w-8 h-8 rounded-full bg-muted border border-border flex items-center justify-center shrink-0 mt-1">
                       <span className="text-sm">4</span>
+                    </div>
+                    <div>
+                      <h4 className="mb-2">LLM Source Analysis</h4>
+                      <p className="text-sm text-muted-foreground">
+                        Using the highest-ranked sources, we synthesize evidence through cross-source validation and build consensus with advanced AI analysis.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 rounded-full bg-muted border border-border flex items-center justify-center shrink-0 mt-1">
+                      <span className="text-sm">5</span>
                     </div>
                     <div>
                       <h4 className="mb-2">Constitutional AI Adherence Check</h4>
@@ -846,6 +859,31 @@ export default function Mission() {
                   Join Our Mission
                 </Link>
               </div>
+
+              <Separator className="my-12" />
+
+              {/* Founder's Signature */}
+              <div className="max-w-2xl mx-auto">
+                <div className="border-l-4 border-primary/30 pl-8 py-6">
+                  <p className="text-muted-foreground leading-relaxed mb-6 text-justify">
+                    I built GenuVerity because I believe we deserve better than the information chaos we're living through. Not as a business opportunity, but as a necessity. The erosion of shared truth isn't just a political problem or a media problem—it's an existential threat to everything we care about.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-6 text-justify">
+                    Every line of code, every Constitutional AI principle, every design decision reflects a simple belief: that truth matters, that people are capable of critical thinking when given the right tools, and that technology can be a force for clarity instead of confusion.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-6 text-justify">
+                    This isn't perfect. It never will be. But it's honest, it's transparent, and it's built on the radical idea that we owe people the truth—even when it's complicated, even when it's uncomfortable, and especially when it challenges what we want to believe.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-8 text-justify">
+                    If you believe that truth still matters, I hope you'll join us in building something that actually serves it.
+                  </p>
+                  <div className="flex flex-col items-start gap-2">
+                    <p className="text-foreground" style={{ fontWeight: 500 }}>Chris Klopfenstein</p>
+                    <p className="text-sm text-muted-foreground">Founder, GenuVerity</p>
+                    <p className="text-sm text-muted-foreground">October 2025</p>
+                  </div>
+                </div>
+              </div>
             </TabsContent>
           </Tabs>
         </div>
@@ -890,6 +928,8 @@ export default function Mission() {
           </p>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 }

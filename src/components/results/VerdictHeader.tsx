@@ -65,20 +65,20 @@ export function VerdictHeader({ claim, verdict, confidence, analysisTime, source
   return (
     <div className="bg-card border border-border rounded-lg p-6 md:p-8 shadow-sm">
       {/* Claim text - displayed as h1 for SEO and accessibility */}
-      <h1 className="mb-6">{claim}</h1>
+      <h1 className="mb-6" style={{ lineHeight: 1.3 }}>{claim}</h1>
       
       {/* Verdict badge and confidence score - stacks on mobile, inline on desktop */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
         <div className="flex items-center gap-4">
           {/* Verdict badge with dynamic color based on verdict type */}
-          <Badge className={`${config.color} text-white px-4 py-2`}>
+          <Badge className={`${config.color} text-white px-4 py-2`} style={{ fontWeight: 700, fontSize: '1.125rem', letterSpacing: '0.02em' }}>
             {config.label}
           </Badge>
           
           {/* Confidence percentage display */}
           <div>
-            <div className="text-sm text-muted-foreground">Confidence</div>
-            <div className={`${config.textColor}`}>{confidence}%</div>
+            <div style={{ fontSize: '0.875rem', color: 'var(--muted-foreground)', fontWeight: 500 }}>Confidence</div>
+            <div className={`${config.textColor}`} style={{ fontSize: '1.5rem', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{confidence}%</div>
           </div>
         </div>
         
@@ -98,10 +98,10 @@ export function VerdictHeader({ claim, verdict, confidence, analysisTime, source
       </div>
 
       {/* Metadata footer - analysis time and source count */}
-      <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-        <span>Analyzed in {analysisTime}</span>
+      <div className="flex flex-wrap gap-4" style={{ fontSize: '0.875rem', color: 'var(--muted-foreground)' }}>
+        <span>Analyzed in <span style={{ fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>{analysisTime}</span></span>
         <span>•</span>
-        <span>{sourceCount} sources</span>
+        <span><span style={{ fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>{sourceCount}</span> sources</span>
       </div>
     </div>
   );

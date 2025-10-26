@@ -4,6 +4,7 @@ import { Button } from '../ui/button';
 import { Sheet, SheetContent } from '../ui/sheet';
 import { ScrollArea } from '../ui/scroll-area';
 import { Navigation } from '../Navigation';
+import { Footer } from '../Footer';
 
 interface ResultsLayoutProps {
   children: ReactNode;
@@ -91,6 +92,9 @@ export function ResultsLayout({ children, sections }: ResultsLayoutProps) {
           </aside>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

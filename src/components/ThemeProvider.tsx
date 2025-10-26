@@ -58,7 +58,8 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   /**
    * Theme state with smart initialization
-   * Priority: localStorage > system preference > default (light)
+   * Priority: localStorage > default (light)
+   * Note: Always defaults to light mode, ignoring system preference
    */
   const [theme, setThemeState] = useState<Theme>(() => {
     // First, check if user has previously selected a theme
@@ -67,12 +68,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       return stored;
     }
     
-    // If no stored preference, check system preference
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    
-    // Default to light mode
+    // Always default to light mode (ignore system preference)
     return 'light';
   });
 

@@ -13,6 +13,8 @@ import { DetailedAnalysisTabs } from '../components/results/DetailedAnalysisTabs
 import { ActionButtons } from '../components/results/ActionButtons';
 import { mockFactCheckResult, mockSimpleResult, mockGreatWallResult } from '../data/mockResults';
 import { Skeleton } from '../components/ui/skeleton';
+import { Alert, AlertDescription } from '../components/ui/alert';
+import { Info } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { FactCheckResult } from '../types';
 
@@ -76,6 +78,14 @@ export default function Results() {
   return (
     <ResultsLayout sections={sections}>
       <div className="space-y-6">
+        {/* Sample Query Notice */}
+        <Alert className="bg-blue-500/10 border-blue-500/20">
+          <Info className="h-4 w-4 text-blue-500" />
+          <AlertDescription className="text-sm">
+            <strong className="text-foreground">Demo Result:</strong> This is a sample query result demonstrating the power of the GenuVerity proprietary pipeline. Some links and interactive features may not be fully functional in this preview.
+          </AlertDescription>
+        </Alert>
+
         {/* Verdict Header */}
         <div id="verdict">
           <VerdictHeader

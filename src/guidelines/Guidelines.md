@@ -93,29 +93,61 @@ Every fact-check must pass Constitutional AI compliance checks across five princ
 
 ### Processing Performance
 
-- **Total Time:** 25-45 seconds for comprehensive analysis
+- **Total Time:** Instant for cached results; 25-45 seconds for new analysis
+- **Processing Stages:** 8-stage pipeline (Query Input → LLM Domain Categorization → Semantic Cache Check → Source Aggregation → Source Ranking → LLM Source Analysis → Constitutional AI Check → Verdict)
 - **Source Database:** 3M+ sources available
-- **Sources Per Query:** 322+ sources analyzed per claim
-- **Simultaneous Aggregation:** 5 specialized aggregators running in parallel
+- **Sources Per Query:** 322+ sources aggregated, highest-credibility sources analyzed in depth
+- **Simultaneous Aggregation:** Multiple specialized aggregators running in parallel
+- **Source Selection:** Quick credibility scan filters down to top sources for LLM analysis
+- **Intelligent Caching:** Semantically similar queries return cached results with refresh option
 
-**Processing Pipeline:**
-1. **LLM Analysis** (0-2s) - Claim understanding and domain classification
-2. **Source Aggregation** (8.8s avg) - Parallel search across 3M+ sources
-3. **LLM Source Analysis** (12-28s) - Credibility scoring and synthesis
-4. **Constitutional AI Check** (2-4s) - Compliance validation
+**Processing Pipeline (8 Stages):**
+1. **Query Input** - User submits claim for verification
+2. **LLM Domain Categorization** (0-2s) - Claim understanding and domain classification to create semantic fingerprint
+3. **Semantic Cache Check** (<1s) - Check for semantically similar cached results; if found, return cached analysis with timestamp and refresh option
+4. **Source Aggregation** (8.8s avg) - Parallel search across 3M+ sources, returns 322+ candidate sources
+5. **Source Ranking** (3s avg) - Quick credibility analysis on all 322+ sources, selects highest-credibility sources for analysis
+6. **LLM Source Analysis** (8-12s) - Evidence synthesis and cross-validation on the selected high-credibility sources
+7. **Constitutional AI Check** (4s avg) - Compliance validation
+8. **Verdict** - Final verdict delivered to user and cached for future queries
 
 **See also:** [How It Works](/pages/HowItWorks.tsx) for detailed pipeline visualization
 
+### Caching & Performance Optimization
+
+**Intelligent Caching System:**
+- Each fact-check result is cached with a semantic fingerprint created during Stage 2 (LLM Domain Categorization)
+- Stage 3 checks for semantically similar cached results using this fingerprint
+- Cached results display instantly with timestamp and "Refresh Analysis" button
+- This creates a Wikipedia-like knowledge base that grows over time
+- Results accessible via clean slugs (e.g., `/verify/vaccines-autism`)
+
+**Source Filtering Process:**
+
+For computational efficiency and quality assurance:
+
+1. **Stage 4** aggregates 322+ candidate sources from the 3M+ source database
+2. **Stage 5** performs quick credibility analysis on all 322+ sources
+3. **Stage 5** selects only the highest-credibility sources
+4. **Stage 6** performs LLM analysis exclusively on those selected sources
+
+This two-tier approach ensures:
+- ✅ Comprehensive source discovery (322+ sources found)
+- ✅ Efficient processing (analysis on top sources only)
+- ✅ Quality assurance (only highest-credibility sources inform verdict)
+
 ### Source Tiers
 
-| Tier | Name | Weight Contribution | Icon |
-|------|------|---------------------|------|
-| 1 | GenuVerified | 35% | 🔬 |
-| 2 | Fact-Check Orgs | 30% | ✓ |
-| 3 | Academic | 25% | 🎓 |
-| 4 | Government | 7% | 🏛️ |
-| 5 | Media | 2.5% | 📰 |
-| 6 | Social Media | 0.5% | 📱 |
+| Tier | Name | Weight Contribution | Icon | Notes |
+|------|------|---------------------|------|-------|
+| 1 | GenuVerified | 35% | 🔬 | Proprietary vetted sources |
+| 2 | Fact-Check Orgs | 30% | ✓ | **Human-curated professional fact-checkers** (e.g., IFCN-certified) |
+| 3 | Academic | 25% | 🎓 | Peer-reviewed research |
+| 4 | Government | 7% | 🏛️ | Official government sources |
+| 5 | Media | 2.5% | 📰 | Established news outlets |
+| 6 | Social Media | 0.5% | 📱 | User-generated content |
+
+**Transparency Note:** Tier 2 sources are human-curated professional fact-checking organizations with established editorial processes and IFCN certification standards.
 
 ---
 
@@ -251,7 +283,8 @@ The application supports theme persistence:
 - `ThemeProvider.tsx` - Context provider for theme state
 - `ThemeToggle.tsx` - UI component for switching themes
 - `localStorage` persistence across sessions
-- System preference detection on first load
+- **Defaults to light mode** (system preference ignored)
+- Users can toggle between light/dark, preference is saved
 
 **Implementation:**
 ```tsx

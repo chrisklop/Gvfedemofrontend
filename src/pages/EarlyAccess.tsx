@@ -5,6 +5,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Textarea } from '../components/ui/textarea';
 import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -142,7 +143,7 @@ export default function EarlyAccess() {
 
         <div className="mt-8 text-center text-sm text-muted-foreground">
           <p>
-            Have questions? <a href="mailto:support@genuverity.com" className="text-primary hover:underline">Contact us</a>
+            Have questions? <a href="mailto:chris@genuverity.com" className="text-primary hover:underline">Contact us</a>
           </p>
         </div>
       </div>

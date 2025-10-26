@@ -19,6 +19,9 @@ export function SourceBreakdown({ distribution, totalCount }: SourceBreakdownPro
   return (
     <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
       <h3 className="mb-4">Source Distribution ({totalCount} total)</h3>
+      <p className="text-xs text-muted-foreground mb-4">
+        <strong className="text-foreground">Transparency Note:</strong> Tier 2 "Fact-Check Orgs" are human-curated professional fact-checking organizations (e.g., IFCN-certified fact-checkers).
+      </p>
       
       <div className="grid md:grid-cols-2 gap-6">
         {/* Chart */}

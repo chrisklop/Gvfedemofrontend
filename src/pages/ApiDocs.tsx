@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Terminal, Code, CheckCircle, Clock, ArrowRight, Send, Database } from 'lucide-react';
 import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
 import { Separator } from '../components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 
@@ -31,24 +32,24 @@ export default function ApiDocs() {
               <div className="w-20 h-20 mx-auto mb-4 rounded-sm border-2 border-border flex items-center justify-center bg-background">
                 <Send className="h-9 w-9 text-foreground" />
               </div>
-              <h4 className="mb-2">Send Request</h4>
-              <p className="text-xs text-muted-foreground">POST /fact-check-ultimate</p>
+              <h4 className="mb-2" style={{ fontWeight: 600 }}>Send Request</h4>
+              <p className="font-mono" style={{ fontSize: '0.75rem' }}>POST /fact-check-ultimate</p>
             </div>
             <ArrowRight className="h-6 w-6 text-muted-foreground rotate-90 md:rotate-0" />
             <div className="flex-1 text-center">
               <div className="w-20 h-20 mx-auto mb-4 rounded-sm border-2 border-border flex items-center justify-center bg-background">
                 <Database className="h-9 w-9 text-foreground" />
               </div>
-              <h4 className="mb-2">Processing</h4>
-              <p className="text-xs text-muted-foreground">25-45 seconds</p>
+              <h4 className="mb-2" style={{ fontWeight: 600 }}>Processing</h4>
+              <p style={{ fontSize: '0.75rem', fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>25-45 seconds</p>
             </div>
             <ArrowRight className="h-6 w-6 text-muted-foreground rotate-90 md:rotate-0" />
             <div className="flex-1 text-center">
               <div className="w-20 h-20 mx-auto mb-4 rounded-sm border-2 border-primary flex items-center justify-center bg-background">
                 <CheckCircle className="h-9 w-9 text-foreground" />
               </div>
-              <h4 className="mb-2">Get Results</h4>
-              <p className="text-xs text-muted-foreground">JSON response</p>
+              <h4 className="mb-2" style={{ fontWeight: 600 }}>Get Results</h4>
+              <p className="font-mono" style={{ fontSize: '0.75rem' }}>JSON response</p>
             </div>
           </div>
         </div>
@@ -91,11 +92,11 @@ export default function ApiDocs() {
             {/* Primary Endpoint */}
             <div>
               <div className="flex items-baseline gap-3 mb-6">
-                <span className="px-2 py-1 text-xs font-mono border border-border rounded-sm">POST</span>
-                <h3>/fact-check-ultimate</h3>
+                <span className="px-3 py-1.5 font-semibold tracking-wide bg-primary text-primary-foreground rounded-sm" style={{ fontWeight: 600 }}>POST</span>
+                <h3 className="font-mono" style={{ fontWeight: 600 }}>/fact-check-ultimate</h3>
               </div>
-              <p className="text-sm text-muted-foreground mb-8">
-                Comprehensive fact-checking with Constitutional AI analysis from a 3M+ source database (322+ sources analyzed per query).
+              <p className="mb-8" style={{ lineHeight: 1.7 }}>
+                Comprehensive fact-checking with Constitutional AI analysis from a <span style={{ fontWeight: 600 }}>3M+ source database</span> (<span style={{ fontWeight: 600 }}>322+ sources</span> analyzed per query).
               </p>
               
               <div className="space-y-8">
@@ -111,15 +112,15 @@ export default function ApiDocs() {
                 </div>
 
                 <div>
-                  <h4 className="mb-4">Parameters</h4>
-                  <div className="text-sm text-muted-foreground space-y-2">
-                    <p><code className="text-foreground bg-muted px-1 py-0.5 rounded">claim</code> (required): The statement to fact-check (10-500 characters recommended)</p>
+                  <h4 className="mb-4" style={{ fontWeight: 600 }}>Parameters</h4>
+                  <div className="space-y-2" style={{ lineHeight: 1.7 }}>
+                    <p><code className="text-foreground bg-muted px-2 py-1 rounded font-mono" style={{ fontWeight: 600 }}>claim</code> <span className="text-muted-foreground">(required)</span>: The statement to fact-check (10-500 characters recommended)</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 text-sm">
+                <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">Response Time: 25-45 seconds for comprehensive analysis</span>
+                  <span className="text-muted-foreground">Response Time: <span style={{ fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>25-45 seconds</span> for comprehensive analysis</span>
                 </div>
 
                 <div>
@@ -164,10 +165,10 @@ export default function ApiDocs() {
             {/* Health Check Endpoint */}
             <div>
               <div className="flex items-baseline gap-3 mb-6">
-                <span className="px-2 py-1 text-xs font-mono border border-border rounded-sm">GET</span>
-                <h3>/health</h3>
+                <span className="px-3 py-1.5 font-semibold tracking-wide bg-secondary text-secondary-foreground rounded-sm" style={{ fontWeight: 600 }}>GET</span>
+                <h3 className="font-mono" style={{ fontWeight: 600 }}>/health</h3>
               </div>
-              <p className="text-sm text-muted-foreground mb-8">
+              <p className="mb-8" style={{ lineHeight: 1.7 }}>
                 Service health and status verification.
               </p>
               <div className="bg-muted p-4 rounded-sm overflow-x-auto">
@@ -190,10 +191,10 @@ export default function ApiDocs() {
             {/* Info Endpoint */}
             <div>
               <div className="flex items-baseline gap-3 mb-6">
-                <span className="px-2 py-1 text-xs font-mono border border-border rounded-sm">GET</span>
-                <h3>/</h3>
+                <span className="px-3 py-1.5 font-semibold tracking-wide bg-secondary text-secondary-foreground rounded-sm" style={{ fontWeight: 600 }}>GET</span>
+                <h3 className="font-mono" style={{ fontWeight: 600 }}>/</h3>
               </div>
-              <p className="text-sm text-muted-foreground mb-8">
+              <p className="mb-8" style={{ lineHeight: 1.7 }}>
                 API information and capabilities.
               </p>
               <div className="bg-muted p-4 rounded-sm overflow-x-auto">
@@ -527,6 +528,8 @@ echo "Full results saved to: $RESPONSE_FILE"`}
           </div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 }

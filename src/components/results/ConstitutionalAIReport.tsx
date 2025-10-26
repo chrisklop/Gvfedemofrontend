@@ -81,13 +81,13 @@ export function ConstitutionalAIReport({ score }: ConstitutionalAIReportProps) {
     <div className="bg-card border border-border rounded-lg p-6 shadow-sm">
       <div className="flex items-center gap-2 mb-4">
         <Shield className="h-5 w-5 text-primary" />
-        <h3>AI Safety Assessment</h3>
+        <h3 style={{ fontWeight: 600 }}>AI Safety Assessment</h3>
       </div>
       
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm text-muted-foreground">Overall Safety Score</span>
-          <span className={`text-xl ${getScoreColor(score.overall)}`}>
+          <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--muted-foreground)' }}>Overall Safety Score</span>
+          <span className={getScoreColor(score.overall)} style={{ fontSize: '1.5rem', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
             {score.overall}%
           </span>
         </div>
@@ -100,12 +100,12 @@ export function ConstitutionalAIReport({ score }: ConstitutionalAIReportProps) {
       </div>
 
       <div className="space-y-3">
-        <p className="text-sm mb-3">Principles Evaluated:</p>
+        <p style={{ fontSize: '0.875rem', fontWeight: 600 }} className="mb-3">Principles Evaluated:</p>
         {metrics.map((metric) => (
           <div key={metric.label}>
-            <div className="flex justify-between mb-1.5 text-sm">
-              <span>{metric.label}</span>
-              <span className={getScoreColor(metric.value)}>{metric.value}%</span>
+            <div className="flex justify-between mb-1.5" style={{ fontSize: '0.875rem' }}>
+              <span style={{ fontWeight: 600 }}>{metric.label}</span>
+              <span className={getScoreColor(metric.value)} style={{ fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>{metric.value}%</span>
             </div>
             <div className="h-1.5 bg-muted rounded-full overflow-hidden">
               <div 

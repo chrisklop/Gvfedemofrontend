@@ -12,20 +12,33 @@ export function Navigation() {
 
   const navLinks = [
     { path: '/how-it-works', label: 'How it Works' },
-    { path: '/early-access', label: 'Beta' },
     { path: '/mission', label: 'Our Mission' },
-    { path: '/api-docs', label: 'API' },
   ];
 
   return (
-    <header className="sticky top-0 w-full px-6 py-1 md:py-2 z-50 bg-background border-b border-border">
-      <nav className="flex items-center justify-between max-w-7xl mx-auto">
+    <header className="sticky top-0 w-full bg-background border-b border-border" style={{ zIndex: 100 }}>
+      <nav className="flex items-center justify-between max-w-7xl mx-auto px-6" style={{ height: '64px', overflow: 'visible' }}>
         {/* Logo */}
-        <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex-shrink-0">
+        <Link 
+          to="/" 
+          onClick={() => setMobileMenuOpen(false)} 
+          className="flex-shrink-0"
+          style={{ 
+            height: '144px',
+            display: 'flex',
+            alignItems: 'center',
+            marginTop: '-40px',
+            marginBottom: '-40px'
+          }}
+        >
           <img 
             src={genuverityLogo} 
             alt="GenuVerity" 
-            className="h-24 md:h-36 w-auto"
+            className="w-auto"
+            style={{ 
+              height: '144px',
+              maxWidth: 'none'
+            }}
           />
         </Link>
         
@@ -35,11 +48,14 @@ export function Navigation() {
             <Link
               key={link.path}
               to={link.path}
-              className={`text-sm transition-colors ${
-                isActive(link.path)
-                  ? 'text-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
+              className="transition-colors hover:opacity-80"
+              style={{
+                fontSize: '0.875rem',
+                fontWeight: isActive(link.path) ? 600 : 400,
+                color: isActive(link.path) ? 'var(--foreground)' : 'var(--muted-foreground)',
+                textDecoration: 'none',
+                cursor: 'pointer'
+              }}
             >
               {link.label}
             </Link>
@@ -54,6 +70,12 @@ export function Navigation() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-foreground hover:text-muted-foreground transition-colors"
             aria-label="Toggle menu"
+            style={{ 
+              cursor: 'pointer',
+              background: 'none',
+              border: 'none',
+              padding: 0
+            }}
           >
             {mobileMenuOpen ? (
               <X className="h-6 w-6" />
@@ -73,11 +95,18 @@ export function Navigation() {
                 key={link.path}
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`px-6 py-2 text-sm transition-colors ${
+                className={`px-6 py-2 transition-colors ${
                   isActive(link.path)
-                    ? 'text-foreground bg-muted'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                    ? 'bg-muted'
+                    : 'hover:bg-muted'
                 }`}
+                style={{
+                  fontSize: '0.875rem',
+                  fontWeight: isActive(link.path) ? 600 : 400,
+                  color: isActive(link.path) ? 'var(--foreground)' : 'var(--muted-foreground)',
+                  textDecoration: 'none',
+                  display: 'block'
+                }}
               >
                 {link.label}
               </Link>
