@@ -31,6 +31,7 @@
  * @see /guidelines/Guidelines.md#constitutional-ai-framework
  */
 
+import { Link } from 'react-router-dom';
 import { ConstitutionalAIScore } from '../../types';
 import { Shield } from 'lucide-react';
 
@@ -118,9 +119,9 @@ export function ConstitutionalAIReport({ score }: ConstitutionalAIReportProps) {
       </div>
 
       <div className="mt-6 pt-4 border-t border-border">
-        <a href="#methodology" className="text-sm text-primary hover:underline">
+        <Link to="/how-it-works" className="text-sm text-primary hover:underline">
           View Safety Methodology →
-        </a>
+        </Link>
       </div>
     </div>
   );

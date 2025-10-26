@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Mail, User, Briefcase, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Mail, User, Briefcase, CheckCircle, MessageSquare } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
@@ -143,7 +143,10 @@ export default function EarlyAccess() {
 
         <div className="mt-8 text-center text-sm text-muted-foreground">
           <p>
-            Have questions? <a href="mailto:chris@genuverity.com" className="text-primary hover:underline">Contact us</a>
+            Have questions? <Link to="/contact" className="text-primary hover:underline inline-flex items-center gap-1">
+              <MessageSquare className="h-3 w-3" />
+              Contact us
+            </Link>
           </p>
         </div>
       </div>

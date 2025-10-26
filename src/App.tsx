@@ -9,6 +9,7 @@ import EarlyAccess from './pages/EarlyAccess';
 import ApiDocs from './pages/ApiDocs';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import KnownLimitations from './pages/KnownLimitations';
+import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/api-docs" element={<ApiDocs />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/limitations" element={<KnownLimitations />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Toaster />

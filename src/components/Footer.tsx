@@ -25,6 +25,13 @@ export function Footer() {
             </Link>
             <Separator orientation="vertical" className="h-4" />
             <Link 
+              to="/contact" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Contact Us
+            </Link>
+            <Separator orientation="vertical" className="h-4" />
+            <Link 
               to="/early-access" 
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >

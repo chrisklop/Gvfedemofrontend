@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { Separator } from '../components/ui/separator';
@@ -469,13 +470,13 @@ export default function KnownLimitations() {
             <div className="border-t border-border pt-8">
               <p className="text-sm text-muted-foreground mb-4">Learn more about GenuVerity:</p>
               <div className="flex flex-wrap gap-3">
-                <a href="/mission" className="text-sm text-primary hover:underline">Our Mission & Values</a>
+                <Link to="/mission" className="text-sm text-primary hover:underline">Our Mission & Values</Link>
                 <span className="text-muted-foreground">•</span>
-                <a href="/how-it-works" className="text-sm text-primary hover:underline">How It Works</a>
+                <Link to="/how-it-works" className="text-sm text-primary hover:underline">How It Works</Link>
                 <span className="text-muted-foreground">•</span>
-                <a href="/api-docs" className="text-sm text-primary hover:underline">API Documentation</a>
+                <Link to="/api-docs" className="text-sm text-primary hover:underline">API Documentation</Link>
                 <span className="text-muted-foreground">•</span>
-                <a href="/privacy" className="text-sm text-primary hover:underline">Privacy Policy</a>
+                <Link to="/privacy" className="text-sm text-primary hover:underline">Privacy Policy</Link>
               </div>
             </div>
           </section>

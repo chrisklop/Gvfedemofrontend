@@ -97,13 +97,12 @@ export function DetailedAnalysisTabs({ fullAnalysis, sources, relatedClaims }: D
             </p>
             <div className="space-y-2">
               {relatedClaims.map((claim, index) => (
-                <a
+                <div
                   key={index}
-                  href="#"
-                  className="block p-3 border border-border rounded-lg hover:bg-accent/50 transition-colors"
+                  className="block p-3 border border-border rounded-lg bg-muted/30"
                 >
                   <span className="text-sm">{claim}</span>
-                </a>
+                </div>
               ))}
             </div>
           </TabsContent>

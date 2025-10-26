@@ -13,6 +13,8 @@ export function Navigation() {
   const navLinks = [
     { path: '/how-it-works', label: 'How it Works' },
     { path: '/mission', label: 'Our Mission' },
+    { path: '/early-access', label: 'Beta' },
+    { path: '/api-docs', label: 'API' },
   ];
 
   return (

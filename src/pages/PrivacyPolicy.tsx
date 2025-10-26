@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { Separator } from '../components/ui/separator';
+import { Button } from '../components/ui/button';
 import { Shield, Lock, Eye, Database, Users, FileText, Mail, CheckCircle } from 'lucide-react';
 
 export default function PrivacyPolicy() {
@@ -500,7 +502,13 @@ export default function PrivacyPolicy() {
                     <p className="text-foreground">chris@genuverity.com</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">For privacy inquiries, security issues, and general support</p>
+                    <p className="text-sm text-muted-foreground mb-4">For privacy inquiries, security issues, and general support</p>
+                    <Button asChild variant="outline" size="sm">
+                      <Link to="/contact" className="inline-flex items-center gap-2">
+                        <Mail className="h-4 w-4" />
+                        Contact Us
+                      </Link>
+                    </Button>
                   </div>
                 </div>
               </div>
