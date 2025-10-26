@@ -124,38 +124,286 @@ export default function ApiDocs() {
                 </div>
 
                 <div>
-                  <h4 className="mb-4">Example Response</h4>
-                  <div className="bg-muted p-4 rounded-sm overflow-x-auto max-h-96">
-                    <pre className="text-xs font-mono">
+                  <h4 className="mb-4">Full Example Response</h4>
+                  <p className="text-sm text-muted-foreground mb-4">Complete JSON response for: <span style={{ fontWeight: 600 }}>"vaccines cause autism"</span></p>
+                  <div className="bg-muted p-4 rounded-sm overflow-x-auto max-h-[600px] overflow-y-auto">
+                    <pre className="text-xs font-mono whitespace-pre">
 {`{
+  "id": "vaccines-autism-2024",
+  "claim": "vaccines cause autism",
   "verdict": {
-    "verdict": "false",
-    "confidence": 0.96,
-    "summary": "Comprehensive analysis summary...",
-    "developer_comment": "Main verdict with confidence score"
+    "verdict": "FALSE",
+    "confidence": 98,
+    "summary": "Extensive scientific evidence from multiple large-scale studies shows no causal link between vaccines and autism. The original 1998 study claiming this connection was fraudulent, has been retracted, and its author lost his medical license. Subsequent research involving over 1.2 million children has conclusively debunked this claim.",
+    "timestamp": "2024-10-26T14:32:18Z"
   },
+  "analysis_time": "32s",
+  "cache_status": "cached",
+  "cached_at": "2024-10-20T09:15:42Z",
+  
   "source_statistics": {
-    "total_sources_found": 247,
-    "sources_analyzed": 198,
-    "sources_excluded": 49,
-    "processing_time_ms": 52000
+    "total_sources_found": 327,
+    "sources_analyzed_by_llm": 48,
+    "tier_breakdown": {
+      "genuverified": 12,
+      "fact_check_orgs": 8,
+      "academic": 156,
+      "government": 89,
+      "media": 52,
+      "social_media": 10
+    },
+    "processing_time_ms": 32000
   },
+  
+  "quality_metrics": {
+    "source_agreement": 97,
+    "evidence_strength": 99,
+    "temporal_consistency": 98,
+    "cross_verification": 96
+  },
+  
+  "constitutional_ai": {
+    "overall_score": 94,
+    "truthfulness": 96,
+    "helpfulness": 92,
+    "harmlessness": 95,
+    "neutrality": 93,
+    "verifiability": 94,
+    "compliance_status": "PASS",
+    "minimum_threshold": 87
+  },
+  
   "sources": [
     {
-      "id": "peer_reviewed_1_a1b2c3d4",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/12345678?ref=genuverity...",
-      "title": "COVID-19 vaccine safety and efficacy study",
-      "source_type": "peer_reviewed",
-      "credibility_score": 0.95,
-      "relevance_score": 0.92
+      "id": "src_001",
+      "title": "Autism Occurrence by MMR Vaccine Status Among US Children With Older Siblings",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25898051/",
+      "domain": "pubmed.ncbi.nlm.nih.gov",
+      "tier": "academic",
+      "credibility_score": 98,
+      "relevance_score": 99,
+      "publication_date": "2015-04-21",
+      "author": "Jain A, Marshall J, Buikema A, et al.",
+      "excerpt": "Study of 95,727 children found no association between MMR vaccination and increased ASD risk, even among children with older siblings with ASD.",
+      "supporting_verdict": true,
+      "analysis": "Large-scale cohort study directly addressing the MMR-autism hypothesis with robust methodology"
+    },
+    {
+      "id": "src_002",
+      "title": "Measles-Mumps-Rubella Vaccination and Autism: A Nationwide Cohort Study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30831578/",
+      "domain": "pubmed.ncbi.nlm.nih.gov",
+      "tier": "academic",
+      "credibility_score": 99,
+      "relevance_score": 99,
+      "publication_date": "2019-03-01",
+      "author": "Hviid A, Hansen JV, Frisch M, Melbye M",
+      "excerpt": "Danish cohort study of 657,461 children found no association between MMR vaccine and autism, even in subgroups at higher risk.",
+      "supporting_verdict": true,
+      "analysis": "One of the largest epidemiological studies on vaccines and autism"
+    },
+    {
+      "id": "src_003",
+      "title": "Retraction of Wakefield et al. Lancet Paper",
+      "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(10)60175-4/fulltext",
+      "domain": "thelancet.com",
+      "tier": "academic",
+      "credibility_score": 100,
+      "relevance_score": 98,
+      "publication_date": "2010-02-02",
+      "author": "The Lancet Editors",
+      "excerpt": "Full retraction of 1998 Wakefield paper due to fraudulent research, ethical violations, and false data.",
+      "supporting_verdict": true,
+      "analysis": "Official retraction of the original fraudulent study that started the vaccine-autism myth"
+    },
+    {
+      "id": "src_004",
+      "title": "CDC Statement on Vaccines and Autism",
+      "url": "https://www.cdc.gov/vaccinesafety/concerns/autism.html",
+      "domain": "cdc.gov",
+      "tier": "government",
+      "credibility_score": 95,
+      "relevance_score": 97,
+      "publication_date": "2023-08-15",
+      "author": "Centers for Disease Control and Prevention",
+      "excerpt": "CDC confirms vaccines do not cause autism based on comprehensive research and monitoring.",
+      "supporting_verdict": true,
+      "analysis": "Official US government health authority position"
+    },
+    {
+      "id": "src_005",
+      "title": "Vaccines are not associated with autism: An evidence-based meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24814559/",
+      "domain": "pubmed.ncbi.nlm.nih.gov",
+      "tier": "academic",
+      "credibility_score": 97,
+      "relevance_score": 98,
+      "publication_date": "2014-06-17",
+      "author": "Taylor LE, Swerdfeger AL, Eslick GD",
+      "excerpt": "Meta-analysis of 1.25 million children found no relationship between vaccination and autism.",
+      "supporting_verdict": true,
+      "analysis": "Comprehensive systematic review synthesizing multiple studies"
+    },
+    {
+      "id": "src_006",
+      "title": "Andrew Wakefield Struck Off Medical Register",
+      "url": "https://www.bmj.com/content/340/bmj.c2803",
+      "domain": "bmj.com",
+      "tier": "academic",
+      "credibility_score": 98,
+      "relevance_score": 96,
+      "publication_date": "2010-05-24",
+      "author": "Dyer C",
+      "excerpt": "GMC strikes Wakefield off UK medical register for fraudulent autism research and ethical violations.",
+      "supporting_verdict": true,
+      "analysis": "Documentation of professional consequences for fraudulent research"
+    },
+    {
+      "id": "src_007",
+      "title": "No Effect of MMR Withdrawal on Autism Incidence",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15753267/",
+      "domain": "pubmed.ncbi.nlm.nih.gov",
+      "tier": "academic",
+      "credibility_score": 96,
+      "relevance_score": 95,
+      "publication_date": "2005-03-01",
+      "author": "Honda H, Shimizu Y, Rutter M",
+      "excerpt": "Japanese study showed autism rates continued to rise even after MMR vaccine was withdrawn.",
+      "supporting_verdict": true,
+      "analysis": "Natural experiment demonstrating no causal relationship"
+    },
+    {
+      "id": "src_008",
+      "title": "WHO Position: Vaccines and Autism",
+      "url": "https://www.who.int/news-room/feature-stories/detail/autism-spectrum-disorders",
+      "domain": "who.int",
+      "tier": "government",
+      "credibility_score": 97,
+      "relevance_score": 96,
+      "publication_date": "2023-03-29",
+      "author": "World Health Organization",
+      "excerpt": "WHO confirms no scientific evidence linking vaccines to autism spectrum disorders.",
+      "supporting_verdict": true,
+      "analysis": "Global health authority consensus"
+    },
+    {
+      "id": "src_009",
+      "title": "Thimerosal and Autism: Multiple Studies Show No Link",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/14595043/",
+      "domain": "pubmed.ncbi.nlm.nih.gov",
+      "tier": "academic",
+      "credibility_score": 95,
+      "relevance_score": 94,
+      "publication_date": "2003-11-01",
+      "author": "Heron J, Golding J, ALSPAC Study Team",
+      "excerpt": "Large UK cohort study found no link between thimerosal-containing vaccines and autism.",
+      "supporting_verdict": true,
+      "analysis": "Addresses specific vaccine ingredient concern"
+    },
+    {
+      "id": "src_010",
+      "title": "Snopes Fact Check: Vaccines and Autism Link",
+      "url": "https://www.snopes.com/fact-check/bad-medicine/",
+      "domain": "snopes.com",
+      "tier": "fact_check_orgs",
+      "credibility_score": 92,
+      "relevance_score": 93,
+      "publication_date": "2024-01-15",
+      "author": "Snopes Editorial Team",
+      "excerpt": "Rated FALSE: No credible scientific evidence supports a link between vaccines and autism.",
+      "supporting_verdict": true,
+      "analysis": "Professional fact-checking organization assessment"
+    },
+    {
+      "id": "src_011",
+      "title": "FactCheck.org: The Vaccine-Autism Myth",
+      "url": "https://www.factcheck.org/2008/10/vaccines-and-autism/",
+      "domain": "factcheck.org",
+      "tier": "fact_check_orgs",
+      "credibility_score": 93,
+      "relevance_score": 94,
+      "publication_date": "2023-09-12",
+      "author": "FactCheck.org",
+      "excerpt": "Comprehensive debunking of vaccine-autism claims with scientific evidence review.",
+      "supporting_verdict": true,
+      "analysis": "IFCN-certified fact-checking organization conclusion"
+    },
+    {
+      "id": "src_012",
+      "title": "American Academy of Pediatrics: Vaccine Safety",
+      "url": "https://www.aap.org/en/patient-care/immunizations/vaccine-safety/",
+      "domain": "aap.org",
+      "tier": "genuverified",
+      "credibility_score": 96,
+      "relevance_score": 95,
+      "publication_date": "2024-02-20",
+      "author": "American Academy of Pediatrics",
+      "excerpt": "AAP states vaccines do not cause autism based on extensive research and clinical evidence.",
+      "supporting_verdict": true,
+      "analysis": "Leading pediatric medical authority position"
     }
   ],
-  "constitutional_analysis": {
-    "overall_compliance": 0.91
+  
+  "sources_excluded": [
+    {
+      "id": "exc_001",
+      "url": "https://example-blog.com/vaccines-dangerous",
+      "reason": "Low credibility score (12/100)",
+      "tier": "social_media"
+    },
+    {
+      "id": "exc_002",
+      "url": "https://conspiracy-site.net/autism-coverup",
+      "reason": "Violates constitutional AI harmlessness principle",
+      "tier": "social_media"
+    }
+  ],
+  
+  "additional_context": {
+    "related_topics": [
+      "MMR vaccine safety",
+      "Thimerosal in vaccines",
+      "Autism spectrum disorder causes",
+      "Wakefield fraud case",
+      "Vaccine hesitancy"
+    ],
+    "key_dates": {
+      "1998": "Fraudulent Wakefield study published",
+      "2004": "Wakefield conflicts of interest revealed",
+      "2010": "Lancet retracts paper, Wakefield struck off",
+      "2011-2019": "Multiple large-scale studies confirm no link"
+    },
+    "scientific_consensus": "No causal link between vaccines and autism (99.8% agreement among peer-reviewed studies)"
+  },
+  
+  "limitations": {
+    "temporal_scope": "Analysis current as of cache date 2024-10-20",
+    "source_language": "Primarily English-language sources",
+    "regional_focus": "Emphasis on US/UK/European research",
+    "note": "While comprehensive, no fact-check can analyze every source ever published"
+  },
+  
+  "recommended_actions": [
+    "Consult with pediatrician about vaccine schedule",
+    "Review CDC immunization guidelines",
+    "Report vaccine misinformation when encountered",
+    "Share evidence-based information with concerned parents"
+  ],
+  
+  "metadata": {
+    "api_version": "1.0.0",
+    "model_version": "constitutional-ai-v2.1",
+    "processing_pipeline": "8-stage",
+    "cache_ttl_days": 30,
+    "refresh_available": true
   }
 }`}
                     </pre>
                   </div>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    <strong>Note:</strong> Full response includes 327 sources. This example shows 12 representative sources for brevity. 
+                    Production API returns complete source list with all {`{credibility_score, relevance_score, tier, analysis}`} fields.
+                  </p>
                 </div>
               </div>
             </div>

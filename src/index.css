@@ -944,8 +944,8 @@
     max-height: var(--radix-select-content-available-height);
   }
 
-  .max-h-96 {
-    max-height: calc(var(--spacing) * 96);
+  .max-h-\[600px\] {
+    max-height: 600px;
   }
 
   .min-h-4 {
@@ -2094,6 +2094,10 @@
 
   .whitespace-nowrap {
     white-space: nowrap;
+  }
+
+  .whitespace-pre {
+    white-space: pre;
   }
 
   .text-\[\#64B8F7\] {
