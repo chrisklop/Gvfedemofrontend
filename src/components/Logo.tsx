@@ -1,9 +1,8 @@
 /**
  * GenuVerity Logo Component
  * 
- * This component provides the GenuVerity logo as an inline SVG,
+ * This component provides the GenuVerity logo using the actual designed logo image,
  * which works in all deployment environments (Figma Make, Vercel, etc.)
- * without requiring external image hosting.
  */
 
 interface LogoProps {
@@ -14,47 +13,16 @@ interface LogoProps {
 
 export function Logo({ className, width = 180, height = 144 }: LogoProps) {
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 180 144"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+    <img
+      src="/genuverity-logo.png"
+      alt="GenuVerity - Constitutional AI Fact Checking"
       className={className}
-    >
-      {/* GenuVerity Text Logo */}
-      <text
-        x="90"
-        y="72"
-        fontFamily="system-ui, -apple-system, sans-serif"
-        fontSize="32"
-        fontWeight="700"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fill="currentColor"
-      >
-        GenuVerity
-      </text>
-      
-      {/* Constitutional AI Badge */}
-      <circle
-        cx="90"
-        cy="100"
-        r="4"
-        fill="#d2562d"
-      />
-      <text
-        x="90"
-        y="120"
-        fontFamily="system-ui, -apple-system, sans-serif"
-        fontSize="8"
-        fontWeight="500"
-        textAnchor="middle"
-        fill="#d2562d"
-      >
-        CONSTITUTIONAL AI
-      </text>
-    </svg>
+      style={{
+        width: width,
+        height: height,
+        objectFit: 'contain'
+      }}
+    />
   );
 }
 
