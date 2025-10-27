@@ -8,9 +8,11 @@ import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Mail, Send, CheckCircle2 } from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
+import { useForm } from '@formspree/react';
 
 export default function Contact() {
+  const [state, handleSubmit] = useForm("chris@genuverity.com");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -19,15 +21,16 @@ export default function Contact() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // In production, this would send to an API
-    // For now, we'll simulate success
-    setTimeout(() => {
+    const result = await handleSubmit(e);
+    
+    if (!result || result.succeeded !== false) {
       setIsSubmitted(true);
       toast.success('Message sent successfully! We\'ll get back to you soon.');
-    }, 500);
+      setFormData({ name: '', email: '', subject: 'general', message: '' });
+    }
   };
 
   const handleChange = (field: string, value: string) => {
@@ -56,7 +59,7 @@ export default function Contact() {
           {/* Contact Form */}
           <Card className="p-8 md:p-10">
             {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={onSubmit} className="space-y-6">
                 {/* Name */}
                 <div className="space-y-2">
                   <Label htmlFor="name">Name *</Label>
@@ -120,9 +123,9 @@ export default function Contact() {
 
                 {/* Submit Button */}
                 <div className="flex justify-end">
-                  <Button type="submit" size="lg" className="gap-2">
+                  <Button type="submit" size="lg" className="gap-2" disabled={state.submitting}>
                     <Send className="h-4 w-4" />
-                    Send Message
+                    {state.submitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </div>
 
