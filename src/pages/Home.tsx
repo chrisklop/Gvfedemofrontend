@@ -8,7 +8,7 @@ import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { AnalysisProgress } from '../components/AnalysisProgress';
 import { toast } from 'sonner';
-import { Logo } from '../components/Logo';
+import genuverityLogo from '../assets/7a1c97674e5167dc2d9474d7d02423e43c5e10fe.png';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -120,11 +120,11 @@ export default function Home() {
         <div className="flex-1 flex items-center justify-center px-4 py-8 md:py-0">
           <div className="w-full max-w-2xl text-center -mt-[350px] md:-mt-20">
             {/* Logo Section */}
-            <div className="mb-0 md:mb-6 flex justify-center">
-              <Logo 
-                width={240}
-                height={192}
-                className="text-foreground w-full max-w-[240px] md:max-w-md h-auto"
+            <div className="mb-0 md:mb-6">
+              <img 
+                src={genuverityLogo} 
+                alt="GenuVerity - Constitutional AI Fact Checking" 
+                className="mx-auto max-w-[240px] md:max-w-md w-full h-auto"
               />
             </div>
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
-import { Logo } from './Logo';
+import genuverityLogo from '../assets/7a1c97674e5167dc2d9474d7d02423e43c5e10fe.png';
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,10 +33,14 @@ export function Navigation() {
             marginBottom: '-40px'
           }}
         >
-          <Logo 
-            width={180}
-            height={144}
-            className="text-foreground"
+          <img 
+            src={genuverityLogo} 
+            alt="GenuVerity" 
+            className="w-auto"
+            style={{ 
+              height: '144px',
+              maxWidth: 'none'
+            }}
           />
         </Link>
         
