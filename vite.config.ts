@@ -16,7 +16,6 @@
         'react-day-picker@8.10.1': 'react-day-picker',
         'lucide-react@0.487.0': 'lucide-react',
         'input-otp@1.4.2': 'input-otp',
-        'figma:asset/7a1c97674e5167dc2d9474d7d02423e43c5e10fe.png': path.resolve(__dirname, './src/assets/7a1c97674e5167dc2d9474d7d02423e43c5e10fe.png'),
         'embla-carousel-react@8.6.0': 'embla-carousel-react',
         'cmdk@1.1.1': 'cmdk',
         'class-variance-authority@0.7.1': 'class-variance-authority',

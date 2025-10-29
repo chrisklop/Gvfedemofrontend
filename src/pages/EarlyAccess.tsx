@@ -8,10 +8,8 @@ import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { useForm } from '@formspree/react';
 
 export default function EarlyAccess() {
-  const [state, handleSubmit] = useForm("chris@genuverity.com");
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,15 +17,11 @@ export default function EarlyAccess() {
     useCase: '',
   });
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    const result = await handleSubmit(e);
-    
-    if (!result || result.succeeded !== false) {
-      toast.success('Thanks for your interest! We\'ll be in touch soon.');
-      setFormData({ name: '', email: '', organization: '', useCase: '' });
-    }
+    // In production, this would submit to an API
+    toast.success('Thanks for your interest! We\'ll be in touch soon.');
+    setFormData({ name: '', email: '', organization: '', useCase: '' });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -75,7 +69,7 @@ export default function EarlyAccess() {
           </ul>
         </div>
 
-        <form onSubmit={onSubmit} className="space-y-6 border border-border rounded-sm p-6 md:p-8">
+        <form onSubmit={handleSubmit} className="space-y-6 border border-border rounded-sm p-6 md:p-8">
           <div className="space-y-2">
             <Label htmlFor="name" className="flex items-center gap-2">
               <User className="h-4 w-4" />
@@ -137,8 +131,8 @@ export default function EarlyAccess() {
             />
           </div>
 
-          <Button type="submit" size="lg" className="w-full" disabled={state.submitting}>
-            {state.submitting ? 'Submitting...' : 'Request Early Access'}
+          <Button type="submit" size="lg" className="w-full">
+            Request Early Access
           </Button>
 
           <p className="text-xs text-center text-muted-foreground">
