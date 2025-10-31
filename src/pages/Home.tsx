@@ -241,7 +241,7 @@ export default function Home() {
                 <Button
                   onClick={handleSearch}
                   size="lg"
-                  className="px-8 md:px-12 py-3 md:py-4 text-lg md:text-xl rounded-full hover:shadow-md transition-shadow bg-primary text-white"
+                  className="px-8 md:px-12 py-3 md:py-4 text-lg md:text-xl rounded-full hover:shadow-md transition-shadow !bg-gray-800 !text-white"
                   style={{ fontWeight: 600 }}
                 >
                   <span className="animated-text">
