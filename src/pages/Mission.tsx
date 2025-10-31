@@ -409,7 +409,7 @@ export default function Mission() {
                   <div className="flex items-start gap-3">
                     <Lightbulb className="h-5 w-5 text-foreground mt-0.5 shrink-0" />
                     <div className="space-y-3">
-                      <p className="text-foreground">It's not about replacing your judgment. It's about giving you a reliable foundation to build your judgment on.</p>
+                      <p className="text-foreground">It's not about replacing your judgment. It's about giving you a reliable foundation to build your judgment on. The sources we provide are your tools for validation - use them to verify every claim.</p>
                       <p className="text-sm text-muted-foreground">
                         61% of Americans agree that media literacy education teaches people how to think more critically, not what to think.<Citation {...references[13]} /> That's exactly what we're doing.
                       </p>

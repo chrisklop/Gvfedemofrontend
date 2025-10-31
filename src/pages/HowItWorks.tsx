@@ -360,7 +360,7 @@ export default function HowItWorks() {
         <div className="max-w-4xl mx-auto px-6 py-24 text-center">
           <h2 className="mb-6">Experience Constitutional AI Fact-Checking</h2>
           <p className="text-muted-foreground mb-12 max-w-2xl mx-auto">
-            See our comprehensive methodology in action with transparent, trustworthy fact-checking results.
+            See our comprehensive methodology in action with transparent, trustworthy fact-checking results. The final step is yours: review the sources to validate the verdict and form your own informed opinion.
           </p>
           <div className="flex items-center justify-center gap-4">
             <Link 

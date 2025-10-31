@@ -31,7 +31,7 @@ export default function KnownLimitations() {
               <div>
                 <h1 className="mb-4">Known Limitations</h1>
                 <p className="text-muted-foreground leading-relaxed text-justify max-w-3xl">
-                  In the spirit of Constitutional AI's <strong className="text-foreground">Epistemic Humility</strong> principle, we believe in radical transparency about what GenuVerity can and cannot do. This page documents the known challenges, limitations, and edge cases of our fact-checking system.
+                  In the spirit of Constitutional AI's <strong className="text-foreground">Epistemic Humility</strong> principle, we believe in radical transparency about what GenuVerity can and cannot do. This page documents the known challenges, limitations, and edge cases of our fact-checking system. Most importantly: our AI verdicts are starting points, not endpoints. Always validate using the sources we provide.
                 </p>
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function KnownLimitations() {
               <div className="border-l-4 border-primary/30 pl-6">
                 <h3 className="mb-3">4.1 LLM Hallucination Risk</h3>
                 <p className="text-muted-foreground leading-relaxed text-justify mb-3">
-                  Large Language Models can occasionally generate plausible-sounding but incorrect information. Our Constitutional AI framework mitigates this through source verification and cross-validation, but no system is perfect.
+                  Large Language Models can occasionally generate plausible-sounding but incorrect information. Our Constitutional AI framework mitigates this through source verification and cross-validation, but no system is perfect. This is why we provide you with all sources - validate our verdict by checking them yourself.
                 </p>
                 <div className="bg-muted/50 rounded-lg p-4">
                   <p className="text-sm">

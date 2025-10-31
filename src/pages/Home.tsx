@@ -267,7 +267,7 @@ export default function Home() {
             <div className="mt-6 md:mt-8 mx-auto max-w-2xl">
               <div className="border-2 border-primary/20 rounded-lg p-4 md:p-6 bg-card shadow-lg">
                 <p className="text-sm md:text-base text-foreground">
-                  GenuVerity is still in development. Any search will show sample fact-checking results, demonstrating GenuVerity's dashboard before launch.
+                  GenuVerity is still in development. Any search will show sample fact-checking results, demonstrating GenuVerity's dashboard before launch. Remember: Always verify AI-generated verdicts by reviewing the provided sources.
                 </p>
                 <p className="text-sm md:text-base text-foreground mt-3">
                   <Link 
