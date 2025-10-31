@@ -111,7 +111,7 @@ export const mockFactCheckResult: FactCheckResult = {
       platform: 'youtube',
       creatorName: 'Dr. Mike',
       viewCount: 2300000,
-      thumbnail: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400',
+      thumbnail: '/genuverity-logo.png',
       isVerified: true,
     },
   ],

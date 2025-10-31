@@ -15,7 +15,9 @@ export default function Home() {
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [dots, setDots] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
   // Animate the dots in the placeholder
@@ -70,8 +72,7 @@ export default function Home() {
     // Show the analysis progress screen
     setIsAnalyzing(true);
     
-    // In production, this would trigger the actual API call
-    // For now, we simulate the progress and then navigate
+    // This is a frontend demo - just show progress then navigate to mock results
   };
 
   const handleAnalysisComplete = (resultId: string) => {
@@ -93,6 +94,28 @@ export default function Home() {
     if (e.key === 'Enter') {
       handleSearch();
     }
+  };
+
+  const handleSearchFocus = () => {
+    setIsSearchFocused(true);
+    // On mobile, scroll the search input into view with offset to account for nav bar
+    if (window.innerWidth < 768 && searchInputRef.current) {
+      setTimeout(() => {
+        const navHeight = 80; // Account for navigation bar height
+        const inputRect = searchInputRef.current?.getBoundingClientRect();
+        if (inputRect) {
+          const scrollToPosition = window.scrollY + inputRect.top - (window.innerHeight / 2) + navHeight;
+          window.scrollTo({
+            top: scrollToPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    }
+  };
+
+  const handleSearchBlur = () => {
+    setIsSearchFocused(false);
   };
 
   return (
@@ -117,11 +140,11 @@ export default function Home() {
         />
       ) : (
         <div className="flex-1 flex items-center justify-center px-4 py-8 md:py-0">
-          <div className="w-full max-w-2xl text-center -mt-[350px] md:-mt-20">
+          <div className="w-full max-w-2xl text-center -mt-[150px] md:-mt-20">
             {/* Logo Section */}
             <div className="mb-0 md:mb-6">
               <img 
-                src="/images/genuverity-logo.png" 
+                src="/genuverity-logo.png" 
                 alt="GenuVerity - Constitutional AI Fact Checking" 
                 className="mx-auto max-w-[240px] md:max-w-md w-full h-auto"
               />
@@ -179,12 +202,19 @@ export default function Home() {
 
                 {/* Search Input */}
                 <Input
+                  ref={searchInputRef}
                   type="text"
                   placeholder={`Verify claim, paste link, or attach image${dots}`}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="w-full pl-10 pr-10 md:pl-12 md:pr-12 py-3 md:py-4 text-base md:text-lg border-2 border-border hover:border-ring focus:border-ring rounded-full shadow-sm bg-input-background"
+                  onFocus={handleSearchFocus}
+                  onBlur={handleSearchBlur}
+                  className={`w-full pl-10 pr-10 md:pl-12 md:pr-12 py-3 md:py-4 text-base md:text-lg border-2 border-border hover:border-ring focus:border-ring rounded-full shadow-sm bg-input-background transition-all duration-200 ${
+                    isSearchFocused && window.innerWidth < 768 
+                      ? 'transform scale-105 shadow-lg' 
+                      : ''
+                  }`}
                 />
               </div>
 
@@ -211,10 +241,25 @@ export default function Home() {
                 <Button
                   onClick={handleSearch}
                   size="lg"
-                  className="px-8 md:px-12 py-3 md:py-4 text-lg md:text-xl rounded-full hover:shadow-md transition-shadow text-[#64B8F7]"
+                  className="px-8 md:px-12 py-3 md:py-4 text-lg md:text-xl rounded-full hover:shadow-md transition-shadow bg-primary text-white"
                   style={{ fontWeight: 600 }}
                 >
-                  Find the Truth
+                  <span className="animated-text">
+                    <span className="letter letter-1">F</span>
+                    <span className="letter letter-2">i</span>
+                    <span className="letter letter-3">n</span>
+                    <span className="letter letter-4">d</span>
+                    <span className="letter letter-5">&nbsp;</span>
+                    <span className="letter letter-6">t</span>
+                    <span className="letter letter-7">h</span>
+                    <span className="letter letter-8">e</span>
+                    <span className="letter letter-9">&nbsp;</span>
+                    <span className="letter letter-10">T</span>
+                    <span className="letter letter-11">r</span>
+                    <span className="letter letter-12">u</span>
+                    <span className="letter letter-13">t</span>
+                    <span className="letter letter-14">h</span>
+                  </span>
                 </Button>
               </div>
             </div>

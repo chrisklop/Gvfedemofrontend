@@ -1,4 +1,3 @@
-import { Sun } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
 
 export function ThemeToggle() {
@@ -7,20 +6,22 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+      className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       style={{
         cursor: 'pointer',
-        background: 'transparent',
         border: 'none',
-        padding: 0
+        backgroundColor: theme === 'light' ? '#e5e7eb' : '#374151',
       }}
     >
-      {theme === 'light' ? (
-        <span className="text-xl">🍊</span>
-      ) : (
-        <Sun className="h-5 w-5" />
-      )}
+      <span
+        className={`inline-block h-4 w-4 transform rounded-full transition duration-200 ease-in-out ${
+          theme === 'dark' ? 'translate-x-6' : 'translate-x-1'
+        }`}
+        style={{
+          backgroundColor: '#ffffff',
+        }}
+      />
     </button>
   );
 }

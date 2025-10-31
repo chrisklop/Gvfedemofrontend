@@ -17,11 +17,38 @@ export default function EarlyAccess() {
     useCase: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In production, this would submit to an API
-    toast.success('Thanks for your interest! We\'ll be in touch soon.');
-    setFormData({ name: '', email: '', organization: '', useCase: '' });
+    
+    try {
+      // Use form data instead of JSON
+      const form = new FormData();
+      form.append('name', formData.name);
+      form.append('email', formData.email);
+      form.append('organization', formData.organization);
+      form.append('useCase', formData.useCase);
+      form.append('_subject', 'GenuVerity Early Access Request');
+
+      const response = await fetch('https://formspree.io/f/xgvpyrqd', {
+        method: 'POST',
+        body: form,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        toast.success('Thanks for your interest! We\'ll be in touch soon.');
+        setFormData({ name: '', email: '', organization: '', useCase: '' });
+      } else {
+        const errorData = await response.json();
+        console.error('Formspree error:', errorData);
+        toast.error(`Error: ${errorData.error || 'Something went wrong. Please try again.'}`);
+      }
+    } catch (error) {
+      console.error('Submit error:', error);
+      toast.error('Something went wrong. Please try again.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

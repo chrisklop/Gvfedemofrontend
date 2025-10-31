@@ -662,6 +662,31 @@ export default function Mission() {
 
             {/* TAB 3: OUR COMMITMENTS */}
             <TabsContent value="commitments" className="space-y-16 mt-0">
+              {/* Letter from Chris */}
+              <div className="max-w-2xl mx-auto">
+                <div className="border-l-4 border-primary/30 pl-6 md:pl-8 py-6">
+                  <p className="text-muted-foreground leading-relaxed mb-4 md:mb-6">
+                    I built GenuVerity because I believe we deserve better than the information chaos we're living through. Not as a business opportunity, but as a necessity. The erosion of shared truth isn't just a political problem or a media problem. It's an existential threat to everything we care about.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-4 md:mb-6">
+                    Every line of code, every Constitutional AI principle, every design decision reflects a simple belief: that truth matters, that people are capable of critical thinking when given the right tools, and that technology can be a force for clarity instead of confusion.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-4 md:mb-6">
+                    This isn't perfect. It never will be. But it's honest, it's transparent, and it's built on the radical idea that we owe people the truth even when it's complicated, even when it's uncomfortable, and especially when it challenges what we want to believe.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed mb-6 md:mb-8">
+                    If you believe that truth still matters, I hope you'll join us in building something that actually serves it.
+                  </p>
+                  <div className="flex flex-col items-start gap-2">
+                    <p className="text-foreground" style={{ fontWeight: 500 }}>Chris Klopfenstein</p>
+                    <p className="text-sm text-muted-foreground">Founder, GenuVerity</p>
+                    <p className="text-sm text-muted-foreground">October 2025</p>
+                  </div>
+                </div>
+              </div>
+
+              <Separator />
+
               <div className="text-center max-w-3xl mx-auto mb-12">
                 <h2 className="mb-6">Our Commitments</h2>
                 <p className="text-muted-foreground">
@@ -860,30 +885,6 @@ export default function Mission() {
                 </Link>
               </div>
 
-              <Separator className="my-12" />
-
-              {/* Founder's Signature */}
-              <div className="max-w-2xl mx-auto">
-                <div className="border-l-4 border-primary/30 pl-8 py-6">
-                  <p className="text-muted-foreground leading-relaxed mb-6 text-justify">
-                    I built GenuVerity because I believe we deserve better than the information chaos we're living through. Not as a business opportunity, but as a necessity. The erosion of shared truth isn't just a political problem or a media problem—it's an existential threat to everything we care about.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed mb-6 text-justify">
-                    Every line of code, every Constitutional AI principle, every design decision reflects a simple belief: that truth matters, that people are capable of critical thinking when given the right tools, and that technology can be a force for clarity instead of confusion.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed mb-6 text-justify">
-                    This isn't perfect. It never will be. But it's honest, it's transparent, and it's built on the radical idea that we owe people the truth—even when it's complicated, even when it's uncomfortable, and especially when it challenges what we want to believe.
-                  </p>
-                  <p className="text-muted-foreground leading-relaxed mb-8 text-justify">
-                    If you believe that truth still matters, I hope you'll join us in building something that actually serves it.
-                  </p>
-                  <div className="flex flex-col items-start gap-2">
-                    <p className="text-foreground" style={{ fontWeight: 500 }}>Chris Klopfenstein</p>
-                    <p className="text-sm text-muted-foreground">Founder, GenuVerity</p>
-                    <p className="text-sm text-muted-foreground">October 2025</p>
-                  </div>
-                </div>
-              </div>
             </TabsContent>
           </Tabs>
         </div>

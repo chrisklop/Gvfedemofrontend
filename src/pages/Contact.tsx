@@ -19,15 +19,38 @@ export default function Contact() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // In production, this would send to an API
-    // For now, we'll simulate success
-    setTimeout(() => {
-      setIsSubmitted(true);
-      toast.success('Message sent successfully! We\'ll get back to you soon.');
-    }, 500);
+    try {
+      // Use form data instead of JSON
+      const form = new FormData();
+      form.append('name', formData.name);
+      form.append('email', formData.email);
+      form.append('subject', formData.subject);
+      form.append('message', formData.message);
+      form.append('_subject', 'GenuVerity Contact Form');
+
+      const response = await fetch('https://formspree.io/f/movpwyby', {
+        method: 'POST',
+        body: form,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        toast.success('Message sent successfully! We\'ll get back to you soon.');
+      } else {
+        const errorData = await response.json();
+        console.error('Formspree error:', errorData);
+        toast.error(`Error: ${errorData.error || 'Something went wrong. Please try again.'}`);
+      }
+    } catch (error) {
+      console.error('Submit error:', error);
+      toast.error('Something went wrong. Please try again.');
+    }
   };
 
   const handleChange = (field: string, value: string) => {

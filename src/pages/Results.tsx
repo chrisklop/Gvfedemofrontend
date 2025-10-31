@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { ResultsLayout } from '../components/layouts/ResultsLayout';
 import { VerdictHeader } from '../components/results/VerdictHeader';
 import { ExecutiveSummary } from '../components/results/ExecutiveSummary';
@@ -20,6 +20,7 @@ import { FactCheckResult } from '../types';
 
 export default function Results() {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
   const [result, setResult] = useState<FactCheckResult | null>(null);
   const [loading, setLoading] = useState(true);
 

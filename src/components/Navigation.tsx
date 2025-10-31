@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,8 +11,6 @@ export function Navigation() {
   const navLinks = [
     { path: '/how-it-works', label: 'How it Works' },
     { path: '/mission', label: 'Our Mission' },
-    { path: '/early-access', label: 'Beta' },
-    { path: '/api-docs', label: 'API' },
   ];
 
   return (
@@ -25,19 +22,18 @@ export function Navigation() {
           onClick={() => setMobileMenuOpen(false)} 
           className="flex-shrink-0"
           style={{ 
-            height: '144px',
+            height: '40px',
             display: 'flex',
-            alignItems: 'center',
-            marginTop: '-40px',
-            marginBottom: '-40px'
+            alignItems: 'center'
           }}
         >
           <img 
-            src="/images/genuverity-logo.png" 
+            src="/gvcleanlogo.png" 
             alt="GenuVerity" 
             className="w-auto"
             style={{ 
-              height: '144px',
+              height: 'auto',
+              width: 'auto',
               maxWidth: 'none'
             }}
           />
@@ -61,12 +57,10 @@ export function Navigation() {
               {link.label}
             </Link>
           ))}
-          <ThemeToggle />
         </div>
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center gap-4">
-          <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="text-foreground hover:text-muted-foreground transition-colors"
