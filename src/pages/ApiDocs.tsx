@@ -7,9 +7,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 
 export default function ApiDocs() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col bg-background">
       {/* Sticky Navigation */}
       <Navigation />
+
+      <main className="flex-1">
 
       {/* Hero Section */}
       <section className="border-b border-border">
@@ -776,6 +778,7 @@ echo "Full results saved to: $RESPONSE_FILE"`}
           </div>
         </div>
       </section>
+      </main>
       
       <Footer />
     </div>

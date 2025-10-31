@@ -68,9 +68,11 @@ export default function Mission() {
   const [activeTab, setActiveTab] = useState("why");
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col bg-background">
       {/* Sticky Navigation */}
       <Navigation />
+
+      <main className="flex-1">
 
       {/* Hero Section */}
       <section className="border-b border-border">
@@ -929,6 +931,7 @@ export default function Mission() {
           </p>
         </div>
       </section>
+      </main>
       
       <Footer />
     </div>

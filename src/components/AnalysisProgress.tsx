@@ -336,68 +336,138 @@ export function AnalysisProgress({
               </motion.div>
             </div>
 
-            {/* Processing Stages Timeline */}
+            {/* Processing Stages Timeline - 2 Column Layout */}
             <div className="px-6 md:px-8 pb-8">
               <h4 className="mb-4 text-sm uppercase tracking-wider text-muted-foreground" style={{ fontWeight: 600, letterSpacing: '0.05em' }}>
                 Processing Pipeline
               </h4>
-              <div className="space-y-2">
-                {PROCESSING_STAGES.map((s, index) => {
-                  const isActive = index === currentStage;
-                  const isCompleteStage = index < currentStage || progress >= 100;
-                  
-                  return (
-                    <motion.div
-                      key={s.id}
-                      ref={isActive ? currentStageRef : null}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      className={`relative flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-lg transition-all duration-300 ${
-                        isActive
-                          ? 'bg-primary/10 border-2 border-primary/30 shadow-md scale-[1.02]'
-                          : isCompleteStage
-                          ? 'bg-muted/40 border border-border/50'
-                          : 'bg-background border border-border/30 opacity-60'
-                      }`}
-                    >
-                      {/* Stage Number/Status */}
-                      <div
-                        className={`flex-shrink-0 w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
-                          isCompleteStage
-                            ? 'bg-green-500 text-white shadow-md'
-                            : isActive
-                            ? 'bg-primary text-primary-foreground shadow-md'
-                            : 'bg-muted text-muted-foreground'
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Column 1: Stages 1-4 */}
+                <div className="space-y-2">
+                  {PROCESSING_STAGES.slice(0, 4).map((s, index) => {
+                    const isActive = index === currentStage;
+                    const isCompleteStage = index < currentStage || progress >= 100;
+                    
+                    return (
+                      <motion.div
+                        key={s.id}
+                        ref={isActive ? currentStageRef : null}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        className={`relative flex items-center gap-3 p-3 rounded-lg transition-all duration-300 ${
+                          isActive
+                            ? 'bg-primary/10 border-2 border-primary/30 shadow-md scale-[1.02]'
+                            : isCompleteStage
+                            ? 'bg-muted/40 border border-border/50'
+                            : 'bg-background border border-border/30 opacity-60'
                         }`}
                       >
-                        {isCompleteStage ? (
-                          <CheckCircle2 className="h-4 w-4 md:h-5 md:w-5" />
-                        ) : (
-                          <span className="text-xs md:text-sm" style={{ fontWeight: 600 }}>{index + 1}</span>
+                        {/* Stage Number/Status */}
+                        <div
+                          className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                            isCompleteStage
+                              ? 'bg-green-500 text-white shadow-md'
+                              : isActive
+                              ? 'bg-primary text-primary-foreground shadow-md'
+                              : 'bg-muted text-muted-foreground'
+                          }`}
+                        >
+                          {isCompleteStage ? (
+                            <CheckCircle2 className="h-4 w-4" />
+                          ) : (
+                            <span className="text-xs" style={{ fontWeight: 600 }}>{index + 1}</span>
+                          )}
+                        </div>
+                        
+                        {/* Stage Info */}
+                        <div className="flex-1 min-w-0">
+                          <p className={`text-sm font-medium truncate ${
+                            isActive ? 'text-foreground' : 'text-foreground/80'
+                          }`}>
+                            {s.label}
+                          </p>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {s.description}
+                          </p>
+                        </div>
+                        
+                        {/* Active Indicator */}
+                        {isActive && (
+                          <motion.div
+                            animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                            className="w-2 h-2 bg-primary rounded-full shadow-lg"
+                          />
                         )}
-                      </div>
-                      
-                      {/* Stage Label */}
-                      <div className="flex-1 min-w-0">
-                        <p className={`text-sm md:text-base truncate ${
-                          isActive ? 'text-foreground' : 'text-foreground/80'
-                        }`} style={{ fontWeight: 500 }}>
-                          {s.label}
-                        </p>
-                      </div>
-                      
-                      {/* Active Indicator */}
-                      {isActive && (
-                        <motion.div
-                          animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                          className="w-2.5 h-2.5 bg-primary rounded-full shadow-lg"
-                        />
-                      )}
-                    </motion.div>
-                  );
-                })}
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                {/* Column 2: Stages 5-8 */}
+                <div className="space-y-2">
+                  {PROCESSING_STAGES.slice(4, 8).map((s, index) => {
+                    const actualIndex = index + 4; // Adjust index for stages 5-8
+                    const isActive = actualIndex === currentStage;
+                    const isCompleteStage = actualIndex < currentStage || progress >= 100;
+                    
+                    return (
+                      <motion.div
+                        key={s.id}
+                        ref={isActive ? currentStageRef : null}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: actualIndex * 0.05 }}
+                        className={`relative flex items-center gap-3 p-3 rounded-lg transition-all duration-300 ${
+                          isActive
+                            ? 'bg-primary/10 border-2 border-primary/30 shadow-md scale-[1.02]'
+                            : isCompleteStage
+                            ? 'bg-muted/40 border border-border/50'
+                            : 'bg-background border border-border/30 opacity-60'
+                        }`}
+                      >
+                        {/* Stage Number/Status */}
+                        <div
+                          className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                            isCompleteStage
+                              ? 'bg-green-500 text-white shadow-md'
+                              : isActive
+                              ? 'bg-primary text-primary-foreground shadow-md'
+                              : 'bg-muted text-muted-foreground'
+                          }`}
+                        >
+                          {isCompleteStage ? (
+                            <CheckCircle2 className="h-4 w-4" />
+                          ) : (
+                            <span className="text-xs" style={{ fontWeight: 600 }}>{actualIndex + 1}</span>
+                          )}
+                        </div>
+                        
+                        {/* Stage Info */}
+                        <div className="flex-1 min-w-0">
+                          <p className={`text-sm font-medium truncate ${
+                            isActive ? 'text-foreground' : 'text-foreground/80'
+                          }`}>
+                            {s.label}
+                          </p>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {s.description}
+                          </p>
+                        </div>
+                        
+                        {/* Active Indicator */}
+                        {isActive && (
+                          <motion.div
+                            animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                            className="w-2 h-2 bg-primary rounded-full shadow-lg"
+                          />
+                        )}
+                      </motion.div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 

@@ -387,7 +387,10 @@ export default function Home() {
         </div>
       )}
       
-      {!isAnalyzing && <Footer />}
+      {/* Sticky Footer */}
+      <div className="mt-auto">
+        <Footer />
+      </div>
     </div>
   );
 }

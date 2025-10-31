@@ -40,7 +40,7 @@ export function ResultsLayout({ children, sections }: ResultsLayoutProps) {
   );
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Top Navigation Bar */}
       <Navigation />
       
@@ -66,7 +66,7 @@ export function ResultsLayout({ children, sections }: ResultsLayoutProps) {
         </Sheet>
       </div>
 
-      <div className="container mx-auto px-4 py-6 md:py-8">
+      <div className="container mx-auto px-4 py-6 md:py-8 flex-1">
         <div className="flex gap-8">
           {/* Desktop Sidebar */}
           <aside className="hidden lg:block w-64 shrink-0">
@@ -93,8 +93,10 @@ export function ResultsLayout({ children, sections }: ResultsLayoutProps) {
         </div>
       </div>
 
-      {/* Footer */}
-      <Footer />
+      {/* Sticky Footer */}
+      <div className="mt-auto">
+        <Footer />
+      </div>
     </div>
   );
 }

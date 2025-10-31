@@ -7,9 +7,11 @@ import { Shield, Lock, Eye, Database, Users, FileText, Mail, CheckCircle } from 
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen flex flex-col bg-background">
       {/* Sticky Navigation */}
       <Navigation />
+
+      <main className="flex-1">
 
       {/* Hero Section */}
       <section className="border-b border-border">
@@ -539,6 +541,7 @@ export default function PrivacyPolicy() {
 
         </div>
       </section>
+      </main>
 
       {/* Footer */}
       <Footer />
