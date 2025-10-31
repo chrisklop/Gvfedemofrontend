@@ -130,8 +130,13 @@ export default function KnownLimitations() {
               <div className="border-l-4 border-primary/30 pl-6">
                 <h3 className="mb-3">2.3 Satirical or Sarcastic Content</h3>
                 <p className="text-muted-foreground leading-relaxed text-justify mb-3">
-                  Detecting satire, parody, or sarcasm remains challenging for AI systems. Content from satirical sources (e.g., The Onion) may be analyzed literally unless context signals are strong.
+                  Detecting satire, parody, or sarcasm remains challenging for AI systems. Content from satirical sources (e.g., The Onion) may be analyzed literally unless context signals are strong. However, our advanced credibility algorithm is continuously improving at recognizing satirical patterns and domain indicators.
                 </p>
+                <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+                  <p className="text-sm">
+                    <strong className="text-foreground">We're optimistic:</strong> Our credibility scoring system shows promise in identifying satirical sources, and we actively encourage user feedback to improve satire detection accuracy.
+                  </p>
+                </div>
               </div>
 
               <div className="border-l-4 border-primary/30 pl-6">
