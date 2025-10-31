@@ -241,122 +241,15 @@ export default function Home() {
                 <Button
                   onClick={handleSearch}
                   size="lg"
-                  className="px-8 md:px-12 py-3 md:py-4 text-lg md:text-xl rounded-full hover:shadow-md transition-shadow !bg-gray-800 !text-white"
+                  className="find-truth-btn px-8 md:px-12 py-3 md:py-4 text-lg md:text-xl rounded-full hover:shadow-md transition-shadow !bg-gray-800"
                   style={{ fontWeight: 600 }}
                 >
-                  <span className="animated-text" style={{ display: 'inline-block' }}>
-                    <span 
-                      className="letter letter-1" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '0.0s'
-                      }}
-                    >F</span>
-                    <span 
-                      className="letter letter-2" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '0.1s'
-                      }}
-                    >i</span>
-                    <span 
-                      className="letter letter-3" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '0.2s'
-                      }}
-                    >n</span>
-                    <span 
-                      className="letter letter-4" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '0.3s'
-                      }}
-                    >d</span>
-                    <span 
-                      className="letter letter-5" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '0.4s'
-                      }}
-                    >&nbsp;</span>
-                    <span 
-                      className="letter letter-6" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '0.5s'
-                      }}
-                    >t</span>
-                    <span 
-                      className="letter letter-7" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '0.6s'
-                      }}
-                    >h</span>
-                    <span 
-                      className="letter letter-8" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '0.7s'
-                      }}
-                    >e</span>
-                    <span 
-                      className="letter letter-9" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '0.8s'
-                      }}
-                    >&nbsp;</span>
-                    <span 
-                      className="letter letter-10" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '0.9s'
-                      }}
-                    >T</span>
-                    <span 
-                      className="letter letter-11" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '1.0s'
-                      }}
-                    >r</span>
-                    <span 
-                      className="letter letter-12" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '1.1s'
-                      }}
-                    >u</span>
-                    <span 
-                      className="letter letter-13" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '1.2s'
-                      }}
-                    >t</span>
-                    <span 
-                      className="letter letter-14" 
-                      style={{ 
-                        display: 'inline-block',
-                        animation: 'colorWave 3s ease-in-out infinite',
-                        animationDelay: '1.3s'
-                      }}
-                    >h</span>
+                  <span className="animated-text">
+                    {"Find the Truth".split("").map((char, index) => (
+                      <span key={index} className="letter">
+                        {char === " " ? "\u00A0" : char}
+                      </span>
+                    ))}
                   </span>
                 </Button>
               </div>
