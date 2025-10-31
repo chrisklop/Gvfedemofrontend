@@ -226,9 +226,9 @@ export function AnalysisProgress({
   return (
     <div 
       ref={containerRef}
-      className="flex-1 overflow-y-auto bg-gradient-to-b from-background to-muted/20"
+      className="flex-1 flex flex-col bg-gradient-to-b from-background to-muted/20"
     >
-      <div className="min-h-full flex items-start justify-center px-4 py-8 md:py-12 lg:py-16">
+      <div className="flex-1 flex items-start justify-center px-4 py-8 md:py-12 lg:py-16 overflow-y-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

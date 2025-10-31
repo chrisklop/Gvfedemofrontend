@@ -134,10 +134,13 @@ export default function Home() {
 
       {/* If analyzing, show progress screen */}
       {isAnalyzing ? (
-        <AnalysisProgress
-          claim={searchQuery}
-          onComplete={handleAnalysisComplete}
-        />
+        <>
+          <AnalysisProgress
+            claim={searchQuery}
+            onComplete={handleAnalysisComplete}
+          />
+          <Footer />
+        </>
       ) : (
         <div className="flex-1 flex items-center justify-center px-4 py-8 md:py-0">
           <div className="w-full max-w-2xl text-center -mt-[150px] md:-mt-20">
