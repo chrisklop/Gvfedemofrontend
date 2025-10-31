@@ -3596,6 +3596,25 @@ html {
   font-size: var(--font-size);
 }
 
+/* Animation for Find the Truth button */
+@keyframes colorWave {
+  0%, 100% {
+    color: #3b82f6 !important; /* Blue */
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+    transform: scale(1.05);
+  }
+  33% {
+    color: #10b981 !important; /* Green */
+    text-shadow: 0 0 15px rgba(16, 185, 129, 0.8);
+    transform: scale(1.1);
+  }
+  66% {
+    color: #f59e0b !important; /* Amber */
+    text-shadow: 0 0 15px rgba(245, 158, 11, 0.8);
+    transform: scale(1.05);
+  }
+}
+
 @property --tw-rotate-x {
   syntax: "*";
   inherits: false;

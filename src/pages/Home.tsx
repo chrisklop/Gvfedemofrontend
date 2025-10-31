@@ -244,21 +244,119 @@ export default function Home() {
                   className="px-8 md:px-12 py-3 md:py-4 text-lg md:text-xl rounded-full hover:shadow-md transition-shadow !bg-gray-800 !text-white"
                   style={{ fontWeight: 600 }}
                 >
-                  <span className="animated-text">
-                    <span className="letter letter-1">F</span>
-                    <span className="letter letter-2">i</span>
-                    <span className="letter letter-3">n</span>
-                    <span className="letter letter-4">d</span>
-                    <span className="letter letter-5">&nbsp;</span>
-                    <span className="letter letter-6">t</span>
-                    <span className="letter letter-7">h</span>
-                    <span className="letter letter-8">e</span>
-                    <span className="letter letter-9">&nbsp;</span>
-                    <span className="letter letter-10">T</span>
-                    <span className="letter letter-11">r</span>
-                    <span className="letter letter-12">u</span>
-                    <span className="letter letter-13">t</span>
-                    <span className="letter letter-14">h</span>
+                  <span className="animated-text" style={{ display: 'inline-block' }}>
+                    <span 
+                      className="letter letter-1" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '0.0s'
+                      }}
+                    >F</span>
+                    <span 
+                      className="letter letter-2" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '0.1s'
+                      }}
+                    >i</span>
+                    <span 
+                      className="letter letter-3" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '0.2s'
+                      }}
+                    >n</span>
+                    <span 
+                      className="letter letter-4" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '0.3s'
+                      }}
+                    >d</span>
+                    <span 
+                      className="letter letter-5" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '0.4s'
+                      }}
+                    >&nbsp;</span>
+                    <span 
+                      className="letter letter-6" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '0.5s'
+                      }}
+                    >t</span>
+                    <span 
+                      className="letter letter-7" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '0.6s'
+                      }}
+                    >h</span>
+                    <span 
+                      className="letter letter-8" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '0.7s'
+                      }}
+                    >e</span>
+                    <span 
+                      className="letter letter-9" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '0.8s'
+                      }}
+                    >&nbsp;</span>
+                    <span 
+                      className="letter letter-10" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '0.9s'
+                      }}
+                    >T</span>
+                    <span 
+                      className="letter letter-11" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '1.0s'
+                      }}
+                    >r</span>
+                    <span 
+                      className="letter letter-12" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '1.1s'
+                      }}
+                    >u</span>
+                    <span 
+                      className="letter letter-13" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '1.2s'
+                      }}
+                    >t</span>
+                    <span 
+                      className="letter letter-14" 
+                      style={{ 
+                        display: 'inline-block',
+                        animation: 'colorWave 3s ease-in-out infinite',
+                        animationDelay: '1.3s'
+                      }}
+                    >h</span>
                   </span>
                 </Button>
               </div>
