@@ -143,29 +143,31 @@ export default function Home() {
         </>
       ) : (
         <div className="flex-1 flex items-center justify-center px-4 py-8 md:py-0">
-          <div className="w-full max-w-2xl text-center -mt-[150px] md:-mt-20">
+          <div className="w-full max-w-3xl text-center -mt-[120px] md:-mt-16 animate-fade-in-up">
             {/* Logo Section */}
-            <div className="mb-0 md:mb-6">
-              <img 
-                src="/genuverity-logo.png" 
-                alt="GenuVerity - Constitutional AI Fact Checking" 
-                className="mx-auto max-w-[240px] md:max-w-md w-full h-auto"
+            <div className="mb-8 md:mb-12">
+              <img
+                src="/genuverity-logo.png"
+                alt="GenuVerity - Constitutional AI Fact Checking"
+                className="mx-auto max-w-[280px] md:max-w-lg w-full h-auto transition-smooth hover:scale-105"
               />
             </div>
 
-            {/* Search Section */}
-            <div className="space-y-[46px] md:space-y-[54px] -mt-16 md:-mt-[180px]">
+            {/* Glass Morphism Search Card */}
+            <div className="glass-card-strong rounded-[32px] p-8 md:p-12 mb-8 transition-smooth hover:shadow-[0_16px_64px_rgba(0,0,0,0.08)]">
+              {/* Search Section */}
+              <div className="space-y-8 md:space-y-10">
               <div className="relative">
-                {/* Attachment Popover */}
-                <div className="absolute inset-y-0 left-4 flex items-center z-10">
+                {/* Floating Attachment Icon */}
+                <div className="absolute inset-y-0 left-5 flex items-center z-10">
                   <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                     <PopoverTrigger asChild>
                       <button
                         type="button"
-                        className="p-0 hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded"
+                        className="p-2 rounded-full bg-white/80 backdrop-blur-sm border border-white/40 hover:bg-primary/10 hover:border-primary/30 transition-smooth-fast hover:scale-110 animate-soft-pulse"
                         aria-label="Attach file"
                       >
-                        <Paperclip className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground cursor-pointer" />
+                        <Paperclip className="h-4 w-4 md:h-5 md:w-5 text-primary cursor-pointer" />
                       </button>
                     </PopoverTrigger>
                     <PopoverContent 
@@ -199,11 +201,11 @@ export default function Home() {
                 </div>
 
                 {/* Search Icon */}
-                <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
-                  <Search className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
+                <div className="absolute inset-y-0 right-6 flex items-center pointer-events-none">
+                  <Search className="h-5 w-5 md:h-6 md:w-6 text-primary/60" />
                 </div>
 
-                {/* Search Input */}
+                {/* Futuristic Search Input */}
                 <Input
                   ref={searchInputRef}
                   type="text"
@@ -213,39 +215,51 @@ export default function Home() {
                   onKeyPress={handleKeyPress}
                   onFocus={handleSearchFocus}
                   onBlur={handleSearchBlur}
-                  className={`w-full pl-10 pr-10 md:pl-12 md:pr-12 py-3 md:py-4 text-base md:text-lg border-2 border-border hover:border-ring focus:border-ring rounded-full shadow-sm bg-input-background transition-all duration-200 ${
-                    isSearchFocused && window.innerWidth < 768 
-                      ? 'transform scale-105 shadow-lg' 
+                  className={`w-full pl-16 md:pl-20 pr-14 md:pr-16 py-5 md:py-6 text-base md:text-lg border-0 bg-white/60 backdrop-blur-sm rounded-full shadow-[inset_0_2px_8px_rgba(0,0,0,0.04)] transition-smooth focus:bg-white/80 focus:shadow-[inset_0_0_20px_rgba(0,102,255,0.08),0_0_0_3px_rgba(0,102,255,0.1)] hover:bg-white/70 ${
+                    isSearchFocused && window.innerWidth < 768
+                      ? 'transform scale-[1.02]'
                       : ''
                   }`}
+                  style={{ outline: 'none' }}
                 />
               </div>
 
               {/* Attached File Display */}
               {attachedFile && (
-                <div className="flex items-center justify-center gap-2 -mt-8 mb-4">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted border border-border rounded-full">
-                    <FileText className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm max-w-[200px] truncate">
+                <div className="flex items-center justify-center gap-2 mb-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-full animate-fade-in-up">
+                    <FileText className="h-4 w-4 text-primary" />
+                    <span className="text-sm max-w-[200px] truncate font-medium text-foreground">
                       {attachedFile.name}
                     </span>
                     <button
                       onClick={handleRemoveFile}
-                      className="p-0.5 hover:bg-background rounded-full transition-colors"
+                      className="p-1 hover:bg-destructive/10 rounded-full transition-smooth-fast"
                       aria-label="Remove attachment"
                     >
-                      <X className="h-3 w-3" />
+                      <X className="h-3 w-3 text-destructive" />
                     </button>
                   </div>
                 </div>
               )}
-              
+
+              {/* Gradient Button with Glow */}
               <div className="flex justify-center">
                 <Button
                   onClick={handleSearch}
                   size="lg"
-                  className="find-truth-btn px-8 md:px-12 py-3 md:py-4 text-lg md:text-xl rounded-full hover:shadow-md transition-shadow !bg-gray-800"
-                  style={{ fontWeight: 600 }}
+                  className="find-truth-btn px-10 md:px-16 py-4 md:py-5 text-lg md:text-xl rounded-full transition-smooth hover:scale-[1.02] shadow-[0_8px_32px_rgba(0,102,255,0.25)] hover:shadow-[0_12px_48px_rgba(0,102,255,0.4)] border-0"
+                  style={{
+                    fontWeight: 600,
+                    background: 'linear-gradient(135deg, #0066ff, #7c3aed)',
+                    backgroundSize: '200% 200%',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundPosition = '100% 50%';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundPosition = '0% 50%';
+                  }}
                 >
                   <span className="animated-text">
                     {"Find the Truth".split("").map((char, index) => (
@@ -256,23 +270,24 @@ export default function Home() {
                   </span>
                 </Button>
               </div>
+              </div>
+
+              {/* Tagline */}
+              <div className="pt-6 text-sm md:text-base text-muted-foreground/80 font-medium">
+                <p>Trusted sources • Verified claims • Deeper insights</p>
+              </div>
             </div>
 
-            {/* Footer */}
-            <div className="pt-6 md:pt-8 text-xs md:text-sm text-muted-foreground">
-              <p>Trusted sources • Verified claims • Deeper insights</p>
-            </div>
-
-            {/* Demo Mode Notice */}
-            <div className="mt-6 md:mt-8 mx-auto max-w-2xl">
-              <div className="border-2 border-primary/20 rounded-lg p-4 md:p-6 bg-card shadow-lg">
-                <p className="text-sm md:text-base text-foreground">
+            {/* Demo Mode Notice with Glass Effect */}
+            <div className="mt-8 md:mt-10 mx-auto max-w-2xl">
+              <div className="glass-card rounded-3xl p-6 md:p-8 border-2 border-primary/10 transition-smooth hover:border-primary/20 hover:shadow-[0_12px_48px_rgba(0,102,255,0.12)]">
+                <p className="text-sm md:text-base text-foreground/90 leading-relaxed">
                   GenuVerity is still in development. Any search will show sample fact-checking results, demonstrating GenuVerity's dashboard before launch. Remember: Always verify AI-generated verdicts by reviewing the provided sources.
                 </p>
-                <p className="text-sm md:text-base text-foreground mt-3">
-                  <Link 
-                    to="/early-access" 
-                    className="text-primary underline hover:text-primary/80 transition-colors font-semibold"
+                <p className="text-sm md:text-base text-foreground mt-4">
+                  <Link
+                    to="/early-access"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold transition-smooth hover:scale-105 hover:shadow-[0_8px_24px_rgba(0,102,255,0.3)]"
                   >
                     Join the Beta
                   </Link>

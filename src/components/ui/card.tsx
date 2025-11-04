@@ -2,12 +2,25 @@ import * as React from "react";
 
 import { cn } from "./utils";
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+function Card({
+  className,
+  variant = "default",
+  ...props
+}: React.ComponentProps<"div"> & {
+  variant?: "default" | "glass" | "floating"
+}) {
+  const variantClasses = {
+    default: "bg-card text-card-foreground border shadow-sm",
+    glass: "glass-card text-card-foreground border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.08)] transition-smooth",
+    floating: "glass-card-strong text-card-foreground border-white/50 shadow-[0_12px_48px_rgba(0,0,0,0.08)] hover:shadow-[0_16px_64px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-smooth",
+  };
+
   return (
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border",
+        "flex flex-col gap-6 rounded-xl",
+        variantClasses[variant],
         className,
       )}
       {...props}

@@ -63,45 +63,45 @@ export function VerdictHeader({ claim, verdict, confidence, analysisTime, source
   const config = verdictConfig[verdict];
 
   return (
-    <div className="bg-card border border-border rounded-lg p-6 md:p-8 shadow-sm">
+    <div className="glass-card-strong rounded-2xl p-6 md:p-8 border border-white/40 shadow-[0_12px_48px_rgba(0,0,0,0.08)] transition-smooth hover:shadow-[0_16px_64px_rgba(0,0,0,0.12)] animate-fade-in-up">
       {/* Claim text - displayed as h1 for SEO and accessibility */}
-      <h1 className="mb-6" style={{ lineHeight: 1.3 }}>{claim}</h1>
-      
+      <h1 className="mb-6 text-foreground" style={{ lineHeight: 1.3 }}>{claim}</h1>
+
       {/* Verdict badge and confidence score - stacks on mobile, inline on desktop */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
         <div className="flex items-center gap-4">
-          {/* Verdict badge with dynamic color based on verdict type */}
-          <Badge className={`${config.color} text-white px-4 py-2`} style={{ fontWeight: 700, fontSize: '1.125rem', letterSpacing: '0.02em' }}>
+          {/* Verdict badge with dynamic color and glow effect */}
+          <Badge className={`${config.color} text-white px-5 py-2.5 rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.2)] hover:scale-105 transition-smooth`} style={{ fontWeight: 700, fontSize: '1.125rem', letterSpacing: '0.02em' }}>
             {config.label}
           </Badge>
-          
+
           {/* Confidence percentage display */}
           <div>
             <div style={{ fontSize: '0.875rem', color: 'var(--muted-foreground)', fontWeight: 500 }}>Confidence</div>
             <div className={`${config.textColor}`} style={{ fontSize: '1.5rem', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{confidence}%</div>
           </div>
         </div>
-        
-        {/* Share button - positioned to right on desktop, stacks on mobile */}
-        <Button variant="outline" size="sm">
+
+        {/* Share button with glass effect */}
+        <Button variant="glass" size="sm" className="rounded-full">
           <Share2 className="h-4 w-4 mr-2" />
           Share
         </Button>
       </div>
 
-      {/* Visual confidence indicator - progress bar fills based on confidence % */}
-      <div className="h-2 bg-muted rounded-full overflow-hidden mb-4">
-        <div 
-          className={`h-full ${config.color}`}
+      {/* Enhanced confidence indicator with glass effect */}
+      <div className="h-3 bg-white/40 rounded-full overflow-hidden mb-6 shadow-[inset_0_2px_8px_rgba(0,0,0,0.06)]">
+        <div
+          className={`h-full ${config.color} transition-all duration-1000 ease-out shadow-[0_0_12px_rgba(0,0,0,0.2)]`}
           style={{ width: `${confidence}%` }}
         />
       </div>
 
-      {/* Metadata footer - analysis time and source count */}
-      <div className="flex flex-wrap gap-4" style={{ fontSize: '0.875rem', color: 'var(--muted-foreground)' }}>
-        <span>Analyzed in <span style={{ fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>{analysisTime}</span></span>
+      {/* Metadata footer with enhanced styling */}
+      <div className="flex flex-wrap gap-4 text-foreground/70" style={{ fontSize: '0.875rem' }}>
+        <span>Analyzed in <span className="font-semibold text-primary" style={{ fontVariantNumeric: 'tabular-nums' }}>{analysisTime}</span></span>
         <span>•</span>
-        <span><span style={{ fontWeight: 600, fontVariantNumeric: 'tabular-nums' }}>{sourceCount}</span> sources</span>
+        <span><span className="font-semibold text-primary" style={{ fontVariantNumeric: 'tabular-nums' }}>{sourceCount}</span> sources</span>
       </div>
     </div>
   );
