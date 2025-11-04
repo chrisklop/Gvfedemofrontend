@@ -17,17 +17,17 @@ export function Navigation() {
     <header className="sticky top-0 w-full z-[100] pt-4 pb-2 md:pt-6 md:pb-3">
       {/* Floating Pill Container */}
       <nav className="max-w-6xl mx-auto px-4">
-        <div className="glass-card-strong rounded-full px-6 py-3 md:px-8 md:py-4 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-smooth hover:shadow-[0_12px_48px_rgba(0,0,0,0.1)] border border-white/40">
-          {/* Logo */}
+        <div className="glass-card-strong rounded-full px-6 py-2.5 md:px-8 md:py-3 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-smooth hover:shadow-[0_12px_48px_rgba(0,0,0,0.1)] border border-white/40">
+          {/* Logo - sized to match nav text height */}
           <Link
             to="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex-shrink-0 transition-smooth hover:scale-105"
+            className="flex-shrink-0 transition-smooth hover:scale-105 flex items-center"
           >
             <img
               src="/gvcleanlogo.png"
               alt="GenuVerity"
-              className="h-8 md:h-10 w-auto"
+              className="h-9 md:h-11 w-auto"
             />
           </Link>
 

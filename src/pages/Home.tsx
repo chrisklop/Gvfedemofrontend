@@ -142,19 +142,19 @@ export default function Home() {
           <Footer />
         </>
       ) : (
-        <div className="flex-1 flex items-center justify-center px-4 py-8 md:py-0">
-          <div className="w-full max-w-3xl text-center -mt-[120px] md:-mt-16 animate-fade-in-up">
-            {/* Logo Section */}
-            <div className="mb-8 md:mb-12">
+        <div className="flex-1 flex items-center justify-center px-4 py-12 md:py-16">
+          <div className="w-full max-w-3xl text-center relative animate-fade-in-up">
+            {/* Logo as Background - positioned behind search */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-12 md:-translate-y-16 w-full max-w-[350px] md:max-w-[500px] opacity-90 z-0 pointer-events-none">
               <img
                 src="/genuverity-logo.png"
-                alt="GenuVerity - Constitutional AI Fact Checking"
-                className="mx-auto max-w-[280px] md:max-w-lg w-full h-auto transition-smooth hover:scale-105"
+                alt="GenuVerity"
+                className="w-full h-auto"
               />
             </div>
 
-            {/* Glass Morphism Search Card */}
-            <div className="glass-card-strong rounded-[32px] p-8 md:p-12 mb-8 transition-smooth hover:shadow-[0_16px_64px_rgba(0,0,0,0.08)]">
+            {/* Glass Morphism Search Card - positioned in front */}
+            <div className="relative z-10 glass-card-strong rounded-[32px] p-8 md:p-12 mb-8 transition-smooth hover:shadow-[0_16px_64px_rgba(0,0,0,0.08)] mt-16 md:mt-20">
               {/* Search Section */}
               <div className="space-y-8 md:space-y-10">
               <div className="relative">
