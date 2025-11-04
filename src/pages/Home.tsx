@@ -142,19 +142,21 @@ export default function Home() {
           <Footer />
         </>
       ) : (
-        <div className="flex-1 flex items-center justify-center px-4 py-12 md:py-16">
-          <div className="w-full max-w-3xl text-center relative animate-fade-in-up">
-            {/* Logo as Background - positioned behind search */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-12 md:-translate-y-16 w-full max-w-[350px] md:max-w-[500px] opacity-90 z-0 pointer-events-none">
+        <div className="flex-1 flex items-center justify-center px-4 py-8 md:py-0">
+          <div className="w-full max-w-3xl text-center -mt-[150px] md:-mt-20 animate-fade-in-up">
+            {/* Logo Section - ABOVE search box (prominent and visible) */}
+            <div className="mb-0 md:mb-6">
               <img
                 src="/genuverity-logo.png"
-                alt="GenuVerity"
-                className="w-full h-auto"
+                alt="GenuVerity - Constitutional AI Fact Checking"
+                className="mx-auto max-w-[280px] md:max-w-md w-full h-auto transition-smooth hover:scale-105"
               />
             </div>
 
-            {/* Glass Morphism Search Card - positioned in front */}
-            <div className="relative z-10 glass-card-strong rounded-[32px] p-8 md:p-12 mb-8 transition-smooth hover:shadow-[0_16px_64px_rgba(0,0,0,0.08)] mt-16 md:mt-20">
+            {/* Search Section with glass morphism */}
+            <div className="space-y-[46px] md:space-y-[54px] -mt-16 md:-mt-[180px]">
+              {/* Glass Morphism Search Card */}
+              <div className="glass-card-strong rounded-[32px] p-8 md:p-12 transition-smooth hover:shadow-[0_16px_64px_rgba(0,0,0,0.08)]">
               {/* Search Section */}
               <div className="space-y-8 md:space-y-10">
               <div className="relative">
@@ -272,14 +274,13 @@ export default function Home() {
               </div>
               </div>
 
-              {/* Tagline */}
-              <div className="pt-6 text-sm md:text-base text-muted-foreground/80 font-medium">
-                <p>Trusted sources • Verified claims • Deeper insights</p>
+                {/* Tagline inside glass card */}
+                <div className="pt-6 text-sm md:text-base text-muted-foreground/80 font-medium">
+                  <p>Trusted sources • Verified claims • Deeper insights</p>
+                </div>
               </div>
-            </div>
 
-            {/* Demo Mode Notice with Glass Effect */}
-            <div className="mt-8 md:mt-10 mx-auto max-w-2xl">
+              {/* Demo Mode Notice with Glass Effect */}
               <div className="glass-card rounded-3xl p-6 md:p-8 border-2 border-primary/10 transition-smooth hover:border-primary/20 hover:shadow-[0_12px_48px_rgba(0,102,255,0.12)]">
                 <p className="text-sm md:text-base text-foreground/90 leading-relaxed">
                   GenuVerity is still in development. Any search will show sample fact-checking results, demonstrating GenuVerity's dashboard before launch. Remember: Always verify AI-generated verdicts by reviewing the provided sources.

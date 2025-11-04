@@ -18,16 +18,26 @@ export function Navigation() {
       {/* Floating Pill Container */}
       <nav className="max-w-6xl mx-auto px-4">
         <div className="glass-card-strong rounded-full px-6 py-2.5 md:px-8 md:py-3 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-smooth hover:shadow-[0_12px_48px_rgba(0,0,0,0.1)] border border-white/40">
-          {/* Logo - sized to match nav text height */}
+          {/* Logo - proper sizing matching nav height */}
           <Link
             to="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex-shrink-0 transition-smooth hover:scale-105 flex items-center"
+            className="flex-shrink-0 transition-smooth hover:scale-105"
+            style={{
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center'
+            }}
           >
             <img
               src="/gvcleanlogo.png"
               alt="GenuVerity"
-              className="h-9 md:h-11 w-auto"
+              className="w-auto"
+              style={{
+                height: 'auto',
+                width: 'auto',
+                maxWidth: 'none'
+              }}
             />
           </Link>
 
