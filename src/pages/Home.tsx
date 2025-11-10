@@ -1,292 +1,284 @@
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Input } from '../components/ui/input';
-import { Button } from '../components/ui/button';
-import { Search, Paperclip, Image as ImageIcon, X, FileText } from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '../components/ui/popover';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
-import { AnalysisProgress } from '../components/AnalysisProgress';
-import { toast } from 'sonner';
+import { Card } from '../components/ui/card';
+import { Badge } from '../components/ui/badge';
+import { CheckCircle, TrendingUp, Database, FileText, Users, BarChart3, Shield, Info } from 'lucide-react';
 
 export default function Home() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [attachedFile, setAttachedFile] = useState<File | null>(null);
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [dots, setDots] = useState('');
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
-
-  // Animate the dots in the placeholder
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDots(prev => {
-        if (prev === '...') return '.';
-        if (prev === '..') return '...';
-        if (prev === '.') return '..';
-        return '.';
-      });
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      // Check file type
-      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
-      if (!validTypes.includes(file.type)) {
-        toast.error('Please upload an image file (JPG, PNG, GIF, or WebP)');
-        return;
-      }
-      
-      // Check file size (max 10MB)
-      if (file.size > 10 * 1024 * 1024) {
-        toast.error('File size must be less than 10MB');
-        return;
-      }
-      
-      setAttachedFile(file);
-      setIsPopoverOpen(false);
-      toast.success('Image attached successfully');
-    }
-  };
-
-  const handleRemoveFile = () => {
-    setAttachedFile(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
-  };
-
-  const handleSearch = () => {
-    // If empty and no file, use a default demo claim
-    if (!searchQuery.trim() && !attachedFile) {
-      setSearchQuery('Vaccines cause autism');
-    }
-    
-    // Show the analysis progress screen
-    setIsAnalyzing(true);
-    
-    // This is a frontend demo - just show progress then navigate to mock results
-  };
-
-  const handleAnalysisComplete = (resultId: string) => {
-    // Map the query to a mock result ID
-    const query = searchQuery.trim().toLowerCase();
-    let mockId = 'vaccines-autism-2024'; // Default
-    
-    // Simple routing based on query content
-    if (query.includes('great wall') || query.includes('china') && query.includes('space')) {
-      mockId = 'great-wall-space-2024';
-    } else if (query.includes('coffee')) {
-      mockId = 'coffee-health-2024';
-    }
-    
-    navigate(`/verify/${mockId}`, { state: { query: searchQuery || 'Vaccines cause autism' } });
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
-
-  const handleSearchFocus = () => {
-    setIsSearchFocused(true);
-    // On mobile, scroll the search input into view with offset to account for nav bar
-    if (window.innerWidth < 768 && searchInputRef.current) {
-      setTimeout(() => {
-        const navHeight = 80; // Account for navigation bar height
-        const inputRect = searchInputRef.current?.getBoundingClientRect();
-        if (inputRect) {
-          const scrollToPosition = window.scrollY + inputRect.top - (window.innerHeight / 2) + navHeight;
-          window.scrollTo({
-            top: scrollToPosition,
-            behavior: 'smooth'
-          });
-        }
-      }, 100);
-    }
-  };
-
-  const handleSearchBlur = () => {
-    setIsSearchFocused(false);
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {/* Hidden file input */}
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept="image/*"
-        onChange={handleFileSelect}
-        className="hidden"
-      />
-
-      {/* Header Navigation */}
       <Navigation />
 
-      {/* If analyzing, show progress screen */}
-      {isAnalyzing ? (
-        <>
-          <AnalysisProgress
-            claim={searchQuery}
-            onComplete={handleAnalysisComplete}
-          />
-          <Footer />
-        </>
-      ) : (
-        <div className="flex-1 flex items-center justify-center px-4 py-8 md:py-0">
-          <div className="w-full max-w-2xl text-center -mt-[150px] md:-mt-20">
-            {/* Logo Section */}
-            <div className="mb-0 md:mb-6">
-              <img 
-                src="/genuverity-logo.png" 
-                alt="GenuVerity - Constitutional AI Fact Checking" 
-                className="mx-auto max-w-[240px] md:max-w-md w-full h-auto"
-              />
-            </div>
-
-            {/* Search Section */}
-            <div className="space-y-[46px] md:space-y-[54px] -mt-16 md:-mt-[180px]">
-              <div className="relative">
-                {/* Attachment Popover */}
-                <div className="absolute inset-y-0 left-4 flex items-center z-10">
-                  <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
-                    <PopoverTrigger asChild>
-                      <button
-                        type="button"
-                        className="p-0 hover:opacity-70 transition-opacity focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded"
-                        aria-label="Attach file"
-                      >
-                        <Paperclip className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground cursor-pointer" />
-                      </button>
-                    </PopoverTrigger>
-                    <PopoverContent 
-                      className="w-56 p-3" 
-                      align="start"
-                      side="bottom"
-                      sideOffset={8}
-                    >
-                      <div className="space-y-2">
-                        <p className="text-sm mb-3" style={{ fontWeight: 600 }}>Attach Evidence</p>
-                        <button
-                          onClick={() => {
-                            fileInputRef.current?.click();
-                          }}
-                          className="w-full flex items-center gap-3 p-2 rounded-md hover:bg-muted transition-colors text-left"
-                        >
-                          <ImageIcon className="h-4 w-4 text-muted-foreground" />
-                          <div>
-                            <p className="text-sm">Upload Image</p>
-                            <p className="text-xs text-muted-foreground">JPG, PNG, GIF, WebP</p>
-                          </div>
-                        </button>
-                        <div className="pt-2 border-t border-border">
-                          <p className="text-xs text-muted-foreground">
-                            You can also paste URLs or type claims directly into the search box.
-                          </p>
-                        </div>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                </div>
-
-                {/* Search Icon */}
-                <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
-                  <Search className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
-                </div>
-
-                {/* Search Input */}
-                <Input
-                  ref={searchInputRef}
-                  type="text"
-                  placeholder={`Verify claim, paste link, or attach image${dots}`}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  onFocus={handleSearchFocus}
-                  onBlur={handleSearchBlur}
-                  className={`w-full pl-10 pr-10 md:pl-12 md:pr-12 py-3 md:py-4 text-base md:text-lg border-2 border-border hover:border-ring focus:border-ring rounded-full shadow-sm bg-input-background transition-all duration-200 ${
-                    isSearchFocused && window.innerWidth < 768 
-                      ? 'transform scale-105 shadow-lg' 
-                      : ''
-                  }`}
-                />
-              </div>
-
-              {/* Attached File Display */}
-              {attachedFile && (
-                <div className="flex items-center justify-center gap-2 -mt-8 mb-4">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted border border-border rounded-full">
-                    <FileText className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm max-w-[200px] truncate">
-                      {attachedFile.name}
-                    </span>
-                    <button
-                      onClick={handleRemoveFile}
-                      className="p-0.5 hover:bg-background rounded-full transition-colors"
-                      aria-label="Remove attachment"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
-                  </div>
-                </div>
-              )}
-              
-              <div className="flex justify-center">
-                <Button
-                  onClick={handleSearch}
-                  size="lg"
-                  className="find-truth-btn px-8 md:px-12 py-3 md:py-4 text-lg md:text-xl rounded-full hover:shadow-md transition-shadow !bg-gray-800"
-                  style={{ fontWeight: 600 }}
-                >
-                  <span className="animated-text">
-                    {"Find the Truth".split("").map((char, index) => (
-                      <span key={index} className="letter">
-                        {char === " " ? "\u00A0" : char}
-                      </span>
-                    ))}
-                  </span>
-                </Button>
-              </div>
-            </div>
-
-            {/* Footer */}
-            <div className="pt-6 md:pt-8 text-xs md:text-sm text-muted-foreground">
-              <p>Trusted sources • Verified claims • Deeper insights</p>
-            </div>
-
-            {/* Demo Mode Notice */}
-            <div className="mt-6 md:mt-8 mx-auto max-w-2xl">
-              <div className="border-2 border-primary/20 rounded-lg p-4 md:p-6 bg-card shadow-lg">
-                <p className="text-sm md:text-base text-foreground">
-                  GenuVerity is still in development. Any search will show sample fact-checking results, demonstrating GenuVerity's dashboard before launch. Remember: Always verify AI-generated verdicts by reviewing the provided sources.
-                </p>
-                <p className="text-sm md:text-base text-foreground mt-3">
-                  <Link 
-                    to="/early-access" 
-                    className="text-primary underline hover:text-primary/80 transition-colors font-semibold"
-                  >
-                    Join the Beta
-                  </Link>
-                </p>
-              </div>
-            </div>
+      <main className="flex-1">
+        {/* Page Header */}
+        <div className="border-b border-border bg-muted/30">
+          <div className="max-w-7xl mx-auto px-6 py-8">
+            <h1 className="text-2xl md:text-3xl font-semibold mb-2">Fact-Check Results Layout Preview</h1>
+            <p className="text-muted-foreground">This demonstrates the structure of a GenuVerity fact-check report. Use the search bar above to analyze any claim.</p>
           </div>
         </div>
-      )}
-      
-      {/* Sticky Footer */}
-      <div className="mt-auto">
-        <Footer />
-      </div>
+
+        <div className="max-w-7xl mx-auto px-6 py-8 space-y-6">
+          {/* Verdict Header Section */}
+          <Card className="p-6 border-2 border-primary/20">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <CheckCircle className="h-6 w-6 text-primary" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-xl font-semibold mb-2">Verdict Header</h2>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Displays the overall verdict (True/False/Mixed/Unverifiable) with a confidence score and visual progress bar.
+                  Includes the original claim and quick metadata like analysis time and source count.
+                </p>
+                <div className="flex flex-wrap gap-2 items-center">
+                  <Badge className="bg-green-500 text-white">TRUE</Badge>
+                  <span className="text-sm text-muted-foreground">Confidence: 87%</span>
+                  <span className="text-sm text-muted-foreground">•</span>
+                  <span className="text-sm text-muted-foreground">42 sources</span>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Executive Summary Section */}
+          <Card className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                <FileText className="h-6 w-6 text-blue-500" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-xl font-semibold mb-2">Executive Summary (TL;DR)</h2>
+                <p className="text-sm text-muted-foreground mb-3">
+                  A concise summary of the fact-check findings in plain language. Includes a "Bottom Line" callout highlighting
+                  the most important takeaway for quick understanding.
+                </p>
+                <div className="bg-muted/50 border-l-4 border-primary p-4 rounded">
+                  <p className="text-sm font-medium">Bottom Line: [Key finding explained clearly]</p>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Quality Indicators Section */}
+          <Card className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="h-6 w-6 text-amber-500" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-xl font-semibold mb-2">Quality Indicators</h2>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Visual progress bars showing scores for Source Quality (credibility of sources), Evidence Strength (quality of supporting evidence),
+                  Consensus Level (agreement among sources), and Recency (how current the information is).
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="text-center">
+                    <div className="h-2 bg-green-500 rounded-full mb-1" style={{width: '85%'}}></div>
+                    <p className="text-xs text-muted-foreground">Source Quality</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="h-2 bg-blue-500 rounded-full mb-1" style={{width: '75%'}}></div>
+                    <p className="text-xs text-muted-foreground">Evidence Strength</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="h-2 bg-amber-500 rounded-full mb-1" style={{width: '90%'}}></div>
+                    <p className="text-xs text-muted-foreground">Consensus</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="h-2 bg-purple-500 rounded-full mb-1" style={{width: '70%'}}></div>
+                    <p className="text-xs text-muted-foreground">Recency</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Source Breakdown Section */}
+          <Card className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                <Database className="h-6 w-6 text-purple-500" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-xl font-semibold mb-2">Source Breakdown</h2>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Pie chart visualization showing the distribution of sources across tiers: Academic (peer-reviewed research),
+                  Government (official agencies), Professional Fact-Checkers, Quality Media, and Social Media. Each tier is
+                  weighted differently in the analysis.
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-2 text-xs">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span>Academic: 35%</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                    <span>Government: 25%</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                    <span>Fact-Check: 20%</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+                    <span>Media: 15%</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-gray-500"></div>
+                    <span>Social: 5%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Source List Section */}
+          <Card className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
+                <FileText className="h-6 w-6 text-indigo-500" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-xl font-semibold mb-2">Detailed Source List</h2>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Complete list of all sources used, organized by tier. Each source includes: title, publication name, date,
+                  credibility score, relevance score, and a direct link. Sources support or contradict the claim with
+                  color-coded indicators.
+                </p>
+                <div className="space-y-2">
+                  <div className="border border-border rounded p-3 text-sm">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex-1">
+                        <p className="font-medium">[Source Title]</p>
+                        <p className="text-xs text-muted-foreground">[Publication] • [Date]</p>
+                      </div>
+                      <Badge variant="outline" className="text-xs">Score: 9.2</Badge>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* AI Model Consensus Section */}
+          <Card className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-cyan-500/10 flex items-center justify-center flex-shrink-0">
+                <Users className="h-6 w-6 text-cyan-500" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-xl font-semibold mb-2">AI Model Consensus</h2>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Shows how multiple AI models independently analyzed the same evidence. Displays agreement level,
+                  individual model verdicts, and vote distribution to demonstrate transparency and reduce single-model bias.
+                </p>
+                <div className="flex gap-2">
+                  <Badge>GPT-4: TRUE</Badge>
+                  <Badge>Claude: TRUE</Badge>
+                  <Badge>Gemini: MIXED</Badge>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Constitutional AI Report Section */}
+          <Card className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                <Shield className="h-6 w-6 text-emerald-500" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-xl font-semibold mb-2">Constitutional AI Compliance</h2>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Scores for five constitutional principles: Epistemic Humility (acknowledging uncertainty), Verifiability (traceable sources),
+                  Neutrality (balanced perspective), Educational Value (teaching critical thinking), and Harmlessness (protecting from harm).
+                  Must achieve 87% minimum across all principles.
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-500">92%</div>
+                    <p className="text-xs text-muted-foreground">Humility</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-500">95%</div>
+                    <p className="text-xs text-muted-foreground">Verifiable</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-500">88%</div>
+                    <p className="text-xs text-muted-foreground">Neutral</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-500">90%</div>
+                    <p className="text-xs text-muted-foreground">Educational</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-green-500">94%</div>
+                    <p className="text-xs text-muted-foreground">Harmless</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Evidence Timeline Section */}
+          <Card className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-rose-500/10 flex items-center justify-center flex-shrink-0">
+                <BarChart3 className="h-6 w-6 text-rose-500" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-xl font-semibold mb-2">Evidence Timeline</h2>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Chronological view of when key evidence emerged. Shows how the story or claim evolved over time,
+                  helping users understand context and identify whether information is current or outdated.
+                </p>
+                <div className="border-l-2 border-border pl-4 space-y-3 text-sm">
+                  <div>
+                    <p className="font-medium">[Date] - [Event/Publication]</p>
+                    <p className="text-xs text-muted-foreground">Brief description of what happened</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Detailed Analysis Tabs Section */}
+          <Card className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-orange-500/10 flex items-center justify-center flex-shrink-0">
+                <Info className="h-6 w-6 text-orange-500" />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-xl font-semibold mb-2">Detailed Analysis Tabs</h2>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Tabbed interface providing deep dives: Methodology (how the analysis was performed),
+                  Limitations (what we couldn't verify), Context (background information), and Related Claims
+                  (similar fact-checks for broader understanding).
+                </p>
+                <div className="flex gap-2 text-sm">
+                  <Badge variant="outline">Methodology</Badge>
+                  <Badge variant="outline">Limitations</Badge>
+                  <Badge variant="outline">Context</Badge>
+                  <Badge variant="outline">Related</Badge>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Demo Notice */}
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+            <p className="text-sm text-blue-900 mb-2">
+              <strong>This is a layout preview.</strong> Use the search bar above to analyze any claim and see these sections populate with real data.
+            </p>
+            <p className="text-xs text-blue-700">
+              GenuVerity is currently in development. All searches return sample results for demonstration purposes.
+            </p>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }
